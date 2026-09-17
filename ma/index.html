@@ -259,6 +259,31 @@ details p{margin:13px 0 0;color:var(--mut);font-size:16.5px}
 .fixa a small{display:block;font-size:11.5px;font-weight:700;opacity:.72;margin-top:3px}
 @media(min-width:760px){.fixa{display:none}}
 
+/* ---------- aviso de diagnóstico a caminho ---------- */
+.aguarde{display:none;background:var(--surf);border:1px solid var(--red-md);
+  border-left:3px solid var(--red);border-radius:0 14px 14px 0;
+  padding:22px 24px;margin-bottom:26px}
+.aguarde.on{display:block}
+.aguarde .topo{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.aguarde .ic{width:34px;height:34px;border-radius:9px;background:var(--red);
+  display:flex;align-items:center;justify-content:center;font-size:16px;flex:0 0 auto}
+.aguarde .rot{font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.aguarde h2{font-size:clamp(20px,3.8vw,25px);margin:0 0 10px;color:#FFF9F6;letter-spacing:-.03em}
+.aguarde p{font-size:16px;line-height:1.55;color:var(--mut);margin:0 0 10px}
+.aguarde p:last-child{margin-bottom:0}
+.aguarde b{color:#FFF9F6}
+.aguarde .relogio{display:inline-flex;align-items:baseline;gap:7px;background:var(--bg);
+  border:1px solid var(--line2);border-radius:99px;padding:7px 15px;margin-top:4px}
+.aguarde .relogio span{font-size:11px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim)}
+.aguarde .relogio b{font-family:Figtree,sans-serif;font-size:17px;font-weight:900;
+  color:var(--red);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.aguarde .chegou{display:none;margin-top:14px}
+.aguarde.pronto .chegou{display:block}
+.aguarde.pronto .relogio{display:none}
+.aguarde .chegou a{display:inline-block;background:var(--red);color:#2A0C08;font-weight:900;
+  font-size:15px;padding:13px 20px;border-radius:10px;text-decoration:none}
+
 footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
 </style>
 </head>
@@ -266,6 +291,18 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
 <div class="glow"></div>
 
 <header class="w">
+  <div class="aguarde" id="aguarde">
+    <div class="topo"><span class="ic">✉</span><span class="rot">Diagnóstico a caminho</span></div>
+    <h2 id="aguardeTit">Teu resultado já foi enviado.</h2>
+    <p id="aguardeTxt">Ele chega no teu e-mail em <b>até 5 minutos</b>.</p>
+    <p>Enquanto isso, separei uma condição especial pra você aqui embaixo. Dá uma olhada — é o caminho completo do que o teste acabou de apontar.</p>
+    <div class="relogio"><span>chega em</span><b id="relogio">5:00</b></div>
+    <div class="chegou">
+      <p style="margin-bottom:10px">Já deve ter chegado. Não achou? Olha no spam.</p>
+      <a href="#" id="linkDiag">ABRIR MEU DIAGNÓSTICO</a>
+    </div>
+  </div>
+
   <div class="doquiz" id="doquiz"><span class="t">Continuando do teu teste</span><p id="doquizTxt"></p></div>
 
   <span class="eyebrow">Masculinidade Autêntica</span>
@@ -701,6 +738,51 @@ function ev(n,o){
   try{ if(window.gtag) window.gtag("event",n,o||{}); }catch(e){}
 }
 ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL"});
+
+/* ---------- aviso de diagnóstico a caminho ---------- */
+(function(){
+  var qs = new URLSearchParams(location.search);
+  if(qs.get("doteste") !== "1") return;
+  var box = document.getElementById("aguarde");
+  if(!box) return;
+
+  var perfil = qs.get("perfil");
+  var trava  = (qs.get("trava") || qs.get("gargalo"));
+  var nome   = (qs.get("nome")||"").trim().split(" ")[0];
+  var email  = qs.get("email") || "";
+
+  if(nome) document.getElementById("aguardeTit").textContent = nome + ", teu resultado já foi enviado.";
+  if(email){
+    document.getElementById("aguardeTxt").innerHTML =
+      "Ele chega em <b>" + email.replace(/</g,"&lt;") + "</b> em <b>até 5 minutos</b>.";
+  }
+  if(perfil){
+    var l = document.getElementById("linkDiag");
+    var p = new URLSearchParams();
+    if(trava) p.set("trava", trava);
+    if(qs.get("pontos")) p.set("pontos", qs.get("pontos"));
+    if(nome) p.set("nome", nome);
+    l.href = "../codigodaatracao/" + perfil + "/?" + p.toString();
+  }
+  box.classList.add("on");
+
+  /* a faixa normal do teste não aparece junto — seria mensagem duplicada */
+  var dq = document.getElementById("doquiz");
+  if(dq) dq.classList.remove("on");
+
+  var resta = 5*60, alvo = document.getElementById("relogio");
+  var t = setInterval(function(){
+    resta--;
+    if(resta <= 0){
+      clearInterval(t);
+      box.classList.add("pronto");
+      return;
+    }
+    var m = Math.floor(resta/60), s = resta % 60;
+    alvo.textContent = m + ":" + (s<10 ? "0"+s : s);
+  }, 1000);
+})();
+
 
 /* ---------- CTA fixo no mobile ---------- */
 (function(){

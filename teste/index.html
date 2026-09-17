@@ -295,6 +295,11 @@ var CFG = {
   vendasFrio:  "../oferta/",
   vendasQuente:"../ma/",
 
+  // Enquanto o diagnóstico não chega por e-mail, a pessoa lê a oferta do curso.
+  // Só acontece se o e-mail realmente tiver saído — senão ela vai direto
+  // para o resultado, porque foi isso que o teste prometeu.
+  paginaDeEspera: "../ma/",
+
   // Um lead é "quente" quando o link traz uma destas origens.
   // Use na prática: /teste?origem=listaespera  ·  /teste?utm_source=email-alunos
   origensQuentes: ["listaespera","lista-espera","alunos","email-alunos","canal","mentoria","recompra"],
@@ -601,17 +606,26 @@ $("#form").addEventListener("submit", function(ev){
   bt.disabled = true;
   bt.textContent = "CARREGANDO…";
 
-  var seguir = function(){ irParaResultado(res); };
+  var seguir = function(r){
+    /* e-mail saiu: manda pra oferta enquanto o diagnóstico não chega.
+       e-mail não saiu: mostra o resultado na hora — a promessa do teste
+       foi dar o diagnóstico, e ela não pode depender de um envio que falhou. */
+    if(r && r.email) irParaEspera(res);
+    else irParaResultado(res);
+  };
 
   if(CFG.webhook){
     fetch(CFG.webhook,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body: JSON.stringify(lead)
-    }).then(seguir).catch(seguir);
+    })
+    .then(function(x){ return x.json(); })
+    .then(seguir)
+    .catch(function(){ seguir(null); });
   } else {
     if(window.console) console.log("[QUIZ] lead capturado:", lead);
-    setTimeout(seguir, 320);
+    setTimeout(function(){ seguir(null); }, 320);
   }
 });
 
@@ -623,6 +637,22 @@ $("#form").addEventListener("submit", function(ev){
    Cada resultado tem URL própria — dá pra indexar, compartilhar e
    remarketear cada perfil separadamente.
    ================================================================== */
+function irParaEspera(res){
+  var p = new URLSearchParams();
+  p.set("doteste","1");
+  p.set("perfil", res.perfil.id);
+  p.set("trava", String(res.trava));
+  if(lead){
+    if(lead.nome)  p.set("nome",  lead.nome);
+    if(lead.email) p.set("email", lead.email);
+  }
+  var e = new URLSearchParams(location.search);
+  ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","origem"].forEach(function(k){
+    if(e.get(k)) p.set(k, e.get(k));
+  });
+  location.href = CFG.paginaDeEspera + "?" + p.toString();
+}
+
 function irParaResultado(res){
   var pf = res.perfil;
   var p  = new URLSearchParams();
