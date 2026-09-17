@@ -307,6 +307,34 @@ details p{margin:13px 0 0;color:var(--mut);font-size:16.5px}
 body.com-barra{padding-top:46px}
 @media(max-width:420px){body.com-barra{padding-top:58px}}
 
+/* ---------- vídeo do depoimento dentro do mecanismo ---------- */
+.depo-inline{margin:20px 0 26px}
+.depo-inline .rotulo{display:inline-flex;align-items:center;gap:7px;font-size:10.5px;
+  font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.depo-inline .rotulo::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
+.depo-inline .filme{position:relative;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9}
+.depo-inline video{width:100%;height:100%;display:block;object-fit:cover;background:#000}
+.depo-inline .quem{font-size:13px;color:var(--dim);margin-top:9px;line-height:1.45}
+.depo-inline .quem b{color:var(--ink);font-weight:800}
+
+/* ---------- VSL ---------- */
+.vsl{margin:28px 0}
+.vsl .moldura{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--line);
+  border-radius:14px;overflow:hidden}
+.vsl .moldura img{width:100%;height:100%;object-fit:cover;display:block}
+.vsl .moldura iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vsl .play{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;
+  background:rgba(21,15,14,.30);display:flex;align-items:center;justify-content:center}
+.vsl .play i{width:72px;height:72px;border-radius:50%;background:var(--red);display:flex;
+  align-items:center;justify-content:center;box-shadow:0 12px 38px -10px rgba(0,0,0,.85)}
+.vsl .play i::after{content:"";border-left:21px solid #2A0C08;border-top:13px solid transparent;
+  border-bottom:13px solid transparent;margin-left:6px}
+.vsl .play:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.vsl .legenda{font-size:14px;color:var(--dim);text-align:center;margin-top:11px;line-height:1.5}
+.depo .dur{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--dim);margin-left:auto}
+.depo .tag-video{display:flex;align-items:center;width:100%}
+
 footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
 </style>
 </head>
@@ -341,11 +369,6 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
   <span class="eyebrow">Masculinidade Autêntica</span>
   <h1>Ninguém te ensinou a habilidade que <mark>decide quase tudo</mark>.</h1>
   <p class="sub">Quanto você ganha. Quem procura você. Com quem você se relaciona. O tamanho da sala em que a sua opinião é ouvida. Tudo isso passa por uma habilidade só — e ela não é talento, é treino.</p>
-
-  <div class="cta-bloco">
-    <a class="cta" href="#oferta" data-cta="topo">QUERO O MÉTODO COMPLETO<small>39 aulas · 12x no cartão</small></a>
-    <p class="cta-sub">7 dias de garantia incondicional — devolvo sem perguntar nada</p>
-  </div>
 
   <div class="selos">
     <span><b>39</b> aulas</span>
@@ -412,14 +435,7 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
     <p style="margin-bottom:0"><em>"Pai, eu não consigo me conectar com as pessoas. Como é que eu vou arranjar um emprego sem me conectar com as pessoas? Como é que eu vou criar laço de amizade forte sem me conectar com as pessoas?"</em></p>
   </div>
 
-  <p>Repara que ele não ligou preocupado com mulher. Ligou preocupado com <strong>emprego</strong> e <strong>amizade</strong>.</p>
-
-  <div class="cards">
-    <div class="card"><b>Travar pra puxar assunto com ela</b><span>é medo do julgamento dela.</span></div>
-    <div class="card"><b>Travar pra pedir aumento</b><span>é medo do julgamento do chefe.</span></div>
-    <div class="card"><b>Travar pra fechar uma venda</b><span>é medo do julgamento do cliente.</span></div>
-    <div class="card"><b>Travar numa mesa de dez</b><span>é medo do julgamento de todos ali.</span></div>
-  </div>
+  
 
   <p>É o mesmo mecanismo em todos. <strong>O que muda é só o cenário.</strong></p>
   <p>O medo da rejeição não é de homem pra mulher. É <strong>de pessoa pra pessoa</strong>. E no dia em que essa ficha cai, você para de procurar uma solução para cada sala e vai atrás do motor.</p>
@@ -516,6 +532,20 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
 </section>
 
 <hr class="w" style="max-width:660px">
+
+<section class="w">
+  <span class="eyebrow">Assista antes de decidir</span>
+  <h2 style="margin-top:14px">Eu te explico o método em vídeo</h2>
+  <p>Se você chegou até aqui lendo, esse vídeo fecha o raciocínio. É eu falando diretamente sobre o que trava a maioria dos homens — e por que o caminho é volume de campo, não técnica.</p>
+
+  <div class="vsl">
+    <div class="moldura" id="molduraVsl">
+      <img src="" alt="" loading="lazy" width="1280" height="720">
+      <button class="play" type="button" id="playVsl" aria-label="Assistir o vídeo"><i></i></button>
+    </div>
+    <p class="legenda">O vídeo só carrega depois que você clica.</p>
+  </div>
+</section>
 
 <section class="w">
   <span class="eyebrow">Alunos</span>
@@ -772,6 +802,24 @@ function ev(n,o){
 }
 ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL"});
 
+/* ---------- VSL: carrega o player só no clique ---------- */
+(function(){
+  var bt = document.getElementById("playVsl");
+  if(!bt) return;
+  bt.addEventListener("click", function(){
+    var m = document.getElementById("molduraVsl");
+    var f = document.createElement("iframe");
+    f.src = "https://www.youtube-nocookie.com/embed/GHy1Q191DxA?autoplay=1&rel=0&modestbranding=1";
+    f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+    f.setAttribute("allowfullscreen","");
+    f.title = "Masculinidade Autêntica — vídeo de apresentação";
+    m.innerHTML = "";
+    m.appendChild(f);
+    ev("VideoPlay",{content_name:"VSL Masculinidade Autentica"});
+  });
+})();
+
+
 /* ---------- aviso de diagnóstico a caminho ---------- */
 (function(){
   var qs = new URLSearchParams(location.search);
@@ -846,11 +894,17 @@ ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL
   var fixa = document.getElementById("fixa");
   var alvo = document.getElementById("oferta");
   if(!fixa || !alvo) return;
+  /* a barra só entra depois que o leitor passa do primeiro CTA real.
+     Antes disso a página ainda está construindo o problema — vender ali
+     é o mesmo erro do botão que existia no topo. */
+  var primeiro = document.querySelector('[data-cta="modulos"]');
   function checa(){
-    var passou = window.scrollY > 720;
+    var gatilho = primeiro
+      ? primeiro.getBoundingClientRect().bottom < 0
+      : window.scrollY > 1800;
     var r = alvo.getBoundingClientRect();
     var naOferta = r.top < window.innerHeight && r.bottom > 0;
-    fixa.classList.toggle("on", passou && !naOferta);
+    fixa.classList.toggle("on", gatilho && !naOferta);
   }
   window.addEventListener("scroll", checa, { passive:true });
   window.addEventListener("resize", checa);
