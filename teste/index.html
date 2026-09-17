@@ -283,8 +283,10 @@ hr{border:0;border-top:1px solid var(--line);margin:44px 0}
    CONFIGURAÇÃO — ajuste estas 3 linhas antes de publicar
    ================================================================== */
 var CFG = {
-  // Para onde vai o lead. Zapier / Make / n8n / ActiveCampaign / seu backend.
-  // Deixe "" para não enviar (os dados ficam salvos no navegador e no console).
+  // Endpoint que grava o lead. Em conquistai.com é o próprio app.
+  // Os leads entram com status 'quiz_lead' e NÃO recebem WhatsApp
+  // automático — a promoção para o funil ativo é manual.
+  // Deixe "" para não enviar (o fluxo continua igual).
   webhook: "",
 
   // Duas portas, escolhidas pela TEMPERATURA do lead — não pela nota do quiz.
