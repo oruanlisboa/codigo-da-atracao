@@ -228,6 +228,37 @@ details p{margin:13px 0 0;color:var(--mut);font-size:16.5px}
 .carro .dica{font-size:12.5px;color:var(--dim);text-align:center;margin-top:12px}
 @media(min-width:760px){ .mcard{flex-basis:288px} }
 
+/* ---------- barra de confiança ---------- */
+.selos{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.selos span{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;
+  color:var(--mut);background:var(--surf);border:1px solid var(--line);
+  border-radius:99px;padding:7px 13px;line-height:1}
+.selos span b{color:var(--red);font-weight:900;font-variant-numeric:tabular-nums}
+/* ---------- passos do pós-compra ---------- */
+.passos{display:flex;flex-direction:column;gap:10px;margin:24px 0}
+.passos .p{display:flex;gap:14px;align-items:flex-start}
+.passos .p i{flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:var(--surf2);
+  border:1px solid var(--line2);color:var(--red);font-size:12.5px;font-weight:900;font-style:normal;
+  display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+.passos .p b{display:block;font-size:16px;color:#FFF9F6;letter-spacing:-.02em;margin-bottom:2px}
+.passos .p span{font-size:15px;color:var(--mut);line-height:1.45}
+/* ---------- objeções ---------- */
+.obj{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:6px 22px;margin:26px 0}
+.obj > div{padding:16px 0}
+.obj > div + div{border-top:1px solid var(--line)}
+.obj b{display:block;font-size:16.5px;color:#FFF9F6;letter-spacing:-.02em;margin-bottom:5px}
+.obj p{font-size:15.5px;color:var(--mut);line-height:1.5;margin:0}
+/* ---------- CTA fixo no mobile ---------- */
+.fixa{position:fixed;left:0;right:0;bottom:0;z-index:9;
+  padding:11px 20px calc(11px + env(safe-area-inset-bottom));
+  background:rgba(21,15,14,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+  transform:translateY(130%);transition:transform .28s}
+.fixa.on{transform:none}
+.fixa a{display:block;max-width:660px;margin:0 auto;background:var(--red);color:#2A0C08;
+  font-weight:900;text-align:center;font-size:16px;padding:15px;border-radius:10px;text-decoration:none}
+.fixa a small{display:block;font-size:11.5px;font-weight:700;opacity:.72;margin-top:3px}
+@media(min-width:760px){.fixa{display:none}}
+
 footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
 </style>
 </head>
@@ -243,8 +274,17 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
 
   <div class="cta-bloco">
     <a class="cta" href="#oferta" data-cta="topo">QUERO O MÉTODO COMPLETO<small>39 aulas · 12x no cartão</small></a>
-    <p class="cta-sub">7 dias de garantia incondicional</p>
+    <p class="cta-sub">7 dias de garantia incondicional — devolvo sem perguntar nada</p>
   </div>
+
+  <div class="selos">
+    <span><b>39</b> aulas</span>
+    <span><b>7h</b> de vídeo</span>
+    <span><b>80%</b> prática</span>
+    <span>Abordagens reais na rua</span>
+    <span>Acesso vitalício</span>
+  </div>
+  <p class="cta-sub" style="text-align:left;margin-top:14px">Milhares de homens já passaram por esse método.</p>
 </header>
 
 <section class="w">
@@ -369,6 +409,10 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
   <p>A ordem importa: cada módulo usa o material que o anterior produziu.</p>
 
     
+
+  <div class="cta-bloco">
+    <a class="cta" href="#oferta" data-cta="modulos">QUERO ACESSO A TODOS OS MÓDULOS<small>12x no cartão · acesso imediato</small></a>
+  </div>
 </section>
 
 <section class="w">
@@ -437,6 +481,11 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
     <p>"Hoje eu sei que só de ir eu já venci — porque eu tô na frente daqueles que nem tentam."</p>
     <div class="quem">Paulo Sergio<span>voltou ao jogo depois de um relacionamento</span></div>
   </div>
+
+  <div class="cta-bloco">
+    <a class="cta" href="#oferta" data-cta="depoimentos">QUERO O MESMO RESULTADO<small>39 aulas · 12x no cartão</small></a>
+    <p class="cta-sub">7 dias de garantia. Se não for pra você, devolvo.</p>
+  </div>
 </section>
 
 <section class="w">
@@ -457,6 +506,10 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
     <li>Seu ciclo social encolheu e você não sabe como recomeçar</li>
     <li>Você já consumiu muito conteúdo de graça e não mudou nada</li>
   </ul>
+
+  <div class="cta-bloco">
+    <a class="cta" href="#oferta" data-cta="praquemé">É PRA MIM — QUERO COMEÇAR<small>acesso imediato · 12x no cartão</small></a>
+  </div>
 </section>
 
 <section class="w" id="oferta">
@@ -475,6 +528,22 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
     <div class="de">HOJE POR</div>
     <div class="val">R$ 997</div>
     <div class="obs">ou 12x no cartão<br>Acesso imediato e vitalício.</div>
+  </div>
+
+  <div class="obj">
+    <div><b>"E se eu não tiver tempo?"</b>
+      <p>O curso não é pra maratonar. É uma aula, um exercício, e volta. O do primeiro dia leva 4 minutos e acontece no caminho de casa.</p></div>
+    <div><b>"E se não funcionar comigo?"</b>
+      <p>Você tem 7 dias pra testar. Não funciona pra quem não executa — e se for o teu caso, eu prefiro devolver o dinheiro a ficar com ele.</p></div>
+    <div><b>"Já vi muito conteúdo de graça e não mudei nada."</b>
+      <p>Por isso mesmo. Conteúdo solto ataca o sintoma do dia e não tem ordem. Aqui os módulos se apoiam uns nos outros — e 80% é o que você faz, não o que assiste.</p></div>
+  </div>
+
+  <h3>O que acontece depois que você compra</h3>
+  <div class="passos">
+    <div class="p"><i>1</i><div><b>Pagamento aprovado</b><span>O acesso é liberado em minutos, direto na plataforma.</span></div></div>
+    <div class="p"><i>2</i><div><b>E-mail com o login</b><span>Chega junto. Se não achar, olha no spam.</span></div></div>
+    <div class="p"><i>3</i><div><b>Você começa hoje</b><span>Módulo 1, primeira aula, primeiro exercício. Ainda hoje, não amanhã.</span></div></div>
   </div>
 
   <div class="cta-bloco">
@@ -559,6 +628,8 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
   <span style="opacity:.7">Este produto não garante resultados. O resultado depende da execução.</span>
 </footer>
 
+<div class="fixa" id="fixa"><a href="#oferta">QUERO O MÉTODO COMPLETO<small>39 aulas · 12x no cartão</small></a></div>
+
 <script>
 (function(){
 "use strict";
@@ -630,6 +701,23 @@ function ev(n,o){
   try{ if(window.gtag) window.gtag("event",n,o||{}); }catch(e){}
 }
 ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL"});
+
+/* ---------- CTA fixo no mobile ---------- */
+(function(){
+  var fixa = document.getElementById("fixa");
+  var alvo = document.getElementById("oferta");
+  if(!fixa || !alvo) return;
+  function checa(){
+    var passou = window.scrollY > 720;
+    var r = alvo.getBoundingClientRect();
+    var naOferta = r.top < window.innerHeight && r.bottom > 0;
+    fixa.classList.toggle("on", passou && !naOferta);
+  }
+  window.addEventListener("scroll", checa, { passive:true });
+  window.addEventListener("resize", checa);
+  checa();
+})();
+
 
 /* ---------- carrossel de módulos ---------- */
 (function(){
