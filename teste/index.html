@@ -599,7 +599,7 @@ $("#form").addEventListener("submit", function(ev){
   bt.disabled = true;
   bt.textContent = "CARREGANDO…";
 
-  var seguir = function(){ mostrarResultado(res); };
+  var seguir = function(){ irParaResultado(res); };
 
   if(CFG.webhook){
     fetch(CFG.webhook,{
@@ -616,6 +616,27 @@ $("#form").addEventListener("submit", function(ev){
 /* ==================================================================
    RESULTADO
    ================================================================== */
+/* ==================================================================
+   REDIRECIONA PARA A PÁGINA DO PERFIL
+   Cada resultado tem URL própria — dá pra indexar, compartilhar e
+   remarketear cada perfil separadamente.
+   ================================================================== */
+function irParaResultado(res){
+  var pf = res.perfil;
+  var p  = new URLSearchParams();
+  p.set("pontos", String(res.total));
+  p.set("gargalo", String(res.gargalo));
+  if(lead){
+    if(lead.nome)  p.set("nome",  lead.nome);
+    if(lead.email) p.set("email", lead.email);
+  }
+  var entrada = new URLSearchParams(location.search);
+  ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","origem"].forEach(function(k){
+    if(entrada.get(k)) p.set(k, entrada.get(k));
+  });
+  location.href = "./" + pf.id + "/?" + p.toString();
+}
+
 function mostrarResultado(res){
   var pf = res.perfil, gg = PILARES[res.gargalo];
   var primeiro = lead && lead.nome ? lead.nome.split(" ")[0] : "";
