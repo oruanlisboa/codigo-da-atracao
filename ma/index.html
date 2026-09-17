@@ -174,6 +174,13 @@ details p{margin:13px 0 0;color:var(--mut);font-size:16.5px}
   color:var(--dim);font-size:14px;text-align:center;padding:24px}
 .provav .vazio b{color:var(--mut);font-size:15px}
 
+.depo .filme{position:relative;margin:0 0 14px;border-radius:10px;overflow:hidden;
+  background:#000;aspect-ratio:16/9}
+.depo .filme video{width:100%;height:100%;display:block;object-fit:cover;background:#000}
+.depo .tag-video{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:900;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:9px}
+.depo .tag-video::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
+
 footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
 </style>
 </head>
@@ -547,10 +554,10 @@ var DOWNSELL = "../oferta/";
 ------------------------------------------------------------------- */
 var VIDEO = {
   modo: "loop",
-  src: "",                 // ex.: "/videos/infield-floripa.mp4"  ou embed do Vimeo/YouTube
-  capa: "",                // imagem de capa (obrigatória no modo "clique")
-  proporcao: "916",
-  legenda: "Trecho do Módulo 8 — mercado em Floripa, sem corte."
+  src: "",
+  capa: "",
+  proporcao: "169",
+  legenda: "Trecho do Módulo 8 — abordagem no Sesc, São Paulo. Sem corte, com legenda."
 };
 
 
