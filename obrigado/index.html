@@ -131,39 +131,39 @@ footer{padding-block:36px 60px;text-align:center;color:var(--dim);font-size:13.5
 
 <hr class="w" style="max-width:660px">
 
-<!-- ============ UPSELL ============ -->
+<!-- ============ UPSELL — APP ============ -->
 <section class="w">
   <span class="eyebrow" style="color:var(--red)">Só nessa página</span>
-  <h2 style="margin-top:14px">Você tem o método. Falta a parte que ninguém te conta.</h2>
+  <h2 style="margin-top:14px">Agora a pergunta honesta: você vai executar?</h2>
 
-  <p>O DESTRAVA te dá os 7 pilares na ordem certa. Mas tem um ponto que eu sabia que ia aparecer no teu caminho, porque ele aparece no de todo mundo:</p>
+  <p>Eu já falei ali em cima, mas vou repetir porque é a coisa mais verdadeira dessa página: <strong>eu comprei vários cursos e fiz metade deles pela metade.</strong> Não foi falta de conteúdo. Foi falta de método pra executar.</p>
 
-  <p><strong>O momento em que o método encontra a tua timidez de frente.</strong></p>
+  <p>O livro te dá os 7 pilares na ordem certa, com os exercícios. <strong>O que ele não faz é te lembrar numa terça-feira em que você esqueceu.</strong></p>
 
-  <p>É quando você entende tudo, sabe exatamente o que fazer, tá na frente da pessoa — e o corpo simplesmente não obedece. Mão suando, voz sumindo, cabeça em branco. O livro explica por que isso acontece. O <strong>Perdendo a Timidez</strong> é o treino específico pra atravessar isso.</p>
-
-  <div class="box">
-    <h3>O que tem dentro</h3>
-    <ul class="bullets">
-      <li>O protocolo pro corpo antes de entrar no ambiente</li>
-      <li>O que fazer nos 30 segundos em que a cabeça dá branco</li>
-      <li>Como treinar exposição em ordem crescente, sem pular degrau</li>
-      <li>A diferença entre nervosismo e medo — e por que só um deles atrapalha</li>
+  <div class="box destaque">
+    <h3>O App DESTRAVA na Prática</h3>
+    <p>Ele <strong>não tem conteúdo novo.</strong> Os exercícios estão todos no livro, completos. O que ele faz é a parte chata:</p>
+    <ul class="bullets" style="margin:16px 0">
+      <li><strong>Te lembra do exercício do dia</strong></li>
+      <li><strong>Guarda o teu caderno organizado por pilar</strong></li>
+      <li><strong>Cruza tudo que você anotou</strong> e mostra quais pensamentos se repetem em dias diferentes</li>
     </ul>
-    <p style="margin-bottom:0"><em>Não é pré-requisito. O DESTRAVA funciona sozinho. Isso aqui é atalho pra quem a timidez é o gargalo principal.</em></p>
+    <p style="margin-bottom:0">Essa lista repetida <strong>é o Pilar 3 inteiro funcionando sozinho</strong> — e é a coisa que no papel é quase impossível de enxergar.</p>
   </div>
+
+  <p>Se você quiser fazer tudo no caderno, funciona do mesmo jeito. Eu fiz no papel durante anos. O app só encurta o caminho.</p>
 
   <div class="preco-up">
-    <div class="de">R$ 97</div>
-    <div class="val">R$ 47</div>
-    <div class="obs">Só nessa página, agora.<br>Se você sair, volta pro preço cheio.</div>
+    <div class="de">R$ 47</div>
+    <div class="val">R$ 29,90</div>
+    <div class="obs">Só nessa página, agora.<br>Compra única, acesso vitalício.</div>
   </div>
 
-  <a class="cta" id="btUpsell" href="#" data-ev="upsell">SIM, QUERO ADICIONAR POR R$ 47<small>vai junto no mesmo acesso</small></a>
-  <p class="cta-sub">7 dias de garantia, igual ao DESTRAVA</p>
+  <a class="cta" id="btUpsell" href="#" data-ev="upsell">SIM, QUERO O APP POR R$ 29,90<small>vai junto no mesmo acesso</small></a>
+  <p class="cta-sub">7 dias de garantia, igual ao livro.</p>
 
   <div style="margin-top:14px">
-    <a class="cta vazado" id="btRecusa" href="#" data-ev="recusa">Não, obrigado — quero só o DESTRAVA</a>
+    <a class="cta vazado" id="btRecusa" href="#" data-ev="recusa">Agora não — quero só o DESTRAVA</a>
   </div>
 </section>
 
@@ -182,8 +182,8 @@ footer{padding-block:36px 60px;text-align:center;color:var(--dim);font-size:13.5
 var LINKS = {
   acesso: "https://SEU-LINK-DE-ENTREGA",          // área de membros / download do PDF
   canal:  "https://SEU-LINK-DO-CANAL",            // canal de transmissão do Instagram ou WhatsApp
-  upsell: "https://pay.kiwify.com.br/SEU-UPSELL", // checkout do Perdendo a Timidez a R$47
-  recusa: "/area"                                  // pra onde vai quem recusa (área de membros)
+  upsell: "https://pay.kiwify.com.br/U9mUuOx",      // App DESTRAVA na Prática R$29,90
+  recusa: ""                                       // vazio = manda pro próprio acesso do ebook
 };
 
 var $ = function(s){ return document.querySelector(s); };
@@ -194,9 +194,31 @@ var nome = (qs.get("nome")||"").trim().split(" ")[0];
 if(nome){ $("#titulo").textContent = "Tá dentro, " + nome + "."; }
 
 /* ---------- links ---------- */
-$("#btAcesso").href = LINKS.acesso;
-$("#btCanal").href  = LINKS.canal;
-$("#btRecusa").href = LINKS.recusa;
+/* botão sem link configurado some, em vez de virar link morto */
+function ligaOuEsconde(sel, url, textoSubstituto){
+  var el = $(sel);
+  if(!el) return;
+  var vazio = !url || /SEU-LINK|SEU-CODIGO/.test(url);
+  if(vazio){
+    var alvo = el.closest("div") || el;
+    el.remove();
+    if(textoSubstituto){
+      var p = document.createElement("p");
+      p.className = "cta-sub";
+      p.style.textAlign = "left";
+      p.innerHTML = textoSubstituto;
+      alvo.appendChild(p);
+    }
+    return false;
+  }
+  el.href = url;
+  return true;
+}
+
+ligaOuEsconde("#btAcesso", LINKS.acesso,
+  "<strong>O acesso foi enviado no teu e-mail</strong>, junto com o link e a senha. Se não achar em 10 minutos, olha no spam — e se não estiver lá, me chama no direct.");
+ligaOuEsconde("#btCanal", LINKS.canal, null);
+$("#btRecusa").href = LINKS.recusa || LINKS.acesso || "#";
 
 var up = new URLSearchParams();
 if(qs.get("email")) up.set("email",qs.get("email"));
@@ -214,7 +236,7 @@ document.addEventListener("click",function(e){
   var a = e.target.closest("[data-ev]");
   if(!a) return;
   var t = a.dataset.ev;
-  if(t==="upsell") evento("InitiateCheckout",{content_name:"Perdendo a Timidez",value:47,currency:"BRL"});
+  if(t==="upsell") evento("InitiateCheckout",{content_name:"App DESTRAVA",value:29.90,currency:"BRL"});
   else evento("ClickObrigado",{alvo:t});
 });
 
