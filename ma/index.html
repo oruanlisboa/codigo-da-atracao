@@ -115,6 +115,20 @@ summary::after{content:"+";float:right;color:var(--red);font-weight:900;font-siz
 details[open] summary::after{content:"–"}
 details p{margin:13px 0 0;color:var(--mut);font-size:16.5px}
 
+
+/* depoimentos */
+.depo{background:var(--surf);border:1px solid var(--line);border-left:3px solid var(--red);
+ border-radius:0 12px 12px 0;padding:22px 24px;margin-bottom:13px}
+.depo p{font-size:16.5px;line-height:1.55;color:var(--ink);margin-bottom:12px}
+.depo p:last-of-type{margin-bottom:14px}
+.depo .quem{font-size:12.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.depo .quem span{display:block;font-size:12px;font-weight:600;letter-spacing:.02em;
+ text-transform:none;color:var(--dim);margin-top:3px}
+/* abordagens reais */
+.abord{display:flex;flex-direction:column;gap:10px;margin:24px 0}
+.abord div{background:var(--surf2);border:1px solid var(--line);border-radius:10px;padding:15px 18px}
+.abord b{display:block;font-size:16px;color:#FFF9F6;font-style:italic;letter-spacing:-.01em;margin-bottom:4px}
+.abord span{font-size:14.5px;color:var(--mut);line-height:1.45}
 footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
 </style>
 </head>
@@ -135,14 +149,21 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
 </header>
 
 <section class="w">
-  <h2>Por que o teste não bastou</h2>
-  <p>O teste fez o diagnóstico. Ele te disse qual dos pilares está emperrado, e isso já é mais do que a maioria dos homens descobre a vida inteira.</p>
+  <h2>Uma pessoa falou que você é tímido. Depois duas. Depois três.</h2>
+
+  <p>E em algum momento você parou de ouvir aquilo como opinião e passou a repetir como fato.</p>
+
+  <p>Foi assim comigo. Ao longo da vida eu fui absorvendo os rótulos que as pessoas apontavam — e quando vi, estava com aquilo tudo na cabeça como <strong>verdade absoluta.</strong> Achei que tinha nascido assim e que ia morrer assim.</p>
+
+  <p>O teste que você acabou de fazer não mediu quem você é. Mediu <strong>o que você faz</strong> quando a chance aparece — e apontou qual dos pilares está emperrado. Isso já é mais do que a maioria dos caras descobre a vida inteira.</p>
+
   <p>Mas diagnóstico não é tratamento.</p>
-  <p>Saber que o teu gargalo é entrar em campo não te faz entrar em campo. Saber que você trava por medo do julgamento não desmonta o julgamento. <strong>Entre entender e executar existe um abismo</strong> — e é nesse abismo que a maioria dos caras mora por anos, colecionando conteúdo e não mudando nada.</p>
 
-  <p class="impacto">Você não tem um problema de informação. Você tem um problema de execução.</p>
+  <p class="impacto">Entre entender e executar existe um abismo. É nele que a maioria mora por anos.</p>
 
-  <p>E execução não se aprende lendo. Se aprende <strong>vendo alguém fazer</strong> e repetindo até virar seu.</p>
+  <p>E eu sei porque eu morei lá. <strong>Eu tinha muita teoria enraizada</strong> — sabia de inteligência social, sabia como falar, como agir, como fazer. Mas na hora de colocar em prática eu perdia pro meu próprio pensamento. Perdia pra mim mesmo, e sempre arrumava uma desculpa pra não executar.</p>
+
+  <p>Foi por isso que eu gravei esse curso <strong>80% prático</strong>. Não é uma escolha estética. É a correção do erro que me custou anos.</p>
 </section>
 
 <section class="w">
@@ -159,7 +180,23 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
   <div class="box destaque">
     <h3>A parte que quase nenhum curso tem</h3>
     <p>Quase todo mundo nesse mercado <strong>fala sobre</strong> abordagem. Quase ninguém <strong>mostra</strong>.</p>
-    <p style="margin-bottom:0">No Módulo 8 você vê a abordagem acontecendo — inclusive as que não deram certo — e ouve o que estava passando na minha cabeça em cada momento. Ver não é a mesma coisa que ouvir. Depois de assistir um cara fazer aquilo na sua frente, a sua cabeça para de tratar como impossível.</p>
+    <p>No Módulo 8 você vê a coisa acontecendo na rua, sem corte e sem roteiro. E cada infield vem <strong>em dupla</strong>: primeiro a abordagem crua, depois ela de novo com meu comentário por cima, parando em cada momento pra explicar o que eu fiz e por quê.</p>
+    <p style="margin-bottom:0">São abordagens reais, com gente real, incluindo as que não deram certo:</p>
+  </div>
+
+  <div class="abord">
+    <div><b>"Você me entrevista e eu te entrevisto."</b>
+      <span>A abertura que vira o jogo: em vez de puxar assunto, propõe um jogo. Vem crua e comentada.</span></div>
+    <div><b>"Vai me ajudar a escolher fruta? Porque eu não sei escolher fruta."</b>
+      <span>Mercado em Floripa. Pedido de ajuda banal, sem nenhuma intenção aparente — e é exatamente isso que faz funcionar.</span></div>
+    <div><b>"Vou te vender essa água. Paguei dois reais, te vendo por cinco centavos."</b>
+      <span>Rua de Gramado. A prova de que não existe frase perfeita — existe entrar.</span></div>
+    <div><b>Abordagem no Sesc, São Paulo</b>
+      <span>Direta, em movimento, com a pessoa andando. O cenário mais difícil que existe.</span></div>
+  </div>
+
+  <div class="box">
+    <p style="margin-bottom:0">Ver não é a mesma coisa que ouvir. Depois de assistir um cara fazer aquilo na sua frente — inclusive tropeçando — a sua cabeça para de tratar como impossível.</p>
   </div>
 </section>
 
@@ -185,6 +222,45 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
     <li><span class="n">Módulo 8 · 6 aulas</span><b>Infields</b>
       <span class="d">Abordagens reais na rua, com comentário em cima. Perguntas na prática, campo em Floripa, abordagem no Sesc SP.</span></li>
   </ol>
+</section>
+
+<hr class="w" style="max-width:660px">
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section class="w">
+  <span class="eyebrow">Alunos</span>
+  <h2 style="margin-top:14px">O que aconteceu com eles</h2>
+  <p>Esses depoimentos estão dentro do próprio curso, no Módulo 0. São caras que gravaram por conta, sem eu pedir roteiro.</p>
+
+  <div class="depo">
+    <p>"Eu tinha acabado de me relacionar com uma menina e ela falou pra mim: <em>você não sabe nada da minha vida, você não pergunta sobre mim.</em> Aí eu liguei pro meu pai e falei: pai, eu não consigo me conectar com as pessoas. Como é que eu vou arranjar um emprego sem me conectar com as pessoas? Como é que eu vou criar laço de amizade forte sem me conectar com as pessoas?"</p>
+    <p>"Comprei o curso do Ruan. Na primeira semana um amigo meu chegou e perguntou: <em>tá sorrindo aí, o que aconteceu?</em>"</p>
+    <div class="quem">Rodrigo Clarindo<span>25 anos · estudava sedução desde os 19</span></div>
+  </div>
+
+  <div class="depo">
+    <p>"Na primeira saída que eu tive, saí com os meus amigos e ninguém tava entendendo nada. Falando que o Caio tinha virado outra pessoa."</p>
+    <p>"E eu tomei a iniciativa de sair sozinho. Fui pra Lapa, aqui no Rio, sozinho — algo que eu nunca tinha pensado em fazer na vida. E foi um dos melhores dias da minha vida."</p>
+    <div class="quem">Caio<span>Rio de Janeiro</span></div>
+  </div>
+
+  <div class="depo">
+    <p>"Namorei dois anos. E nem fui eu que cheguei nela — foi amigo que apresentou. Quando a gente terminou, aquilo do passado voltou: o cara travado, que não falava com mulher, que nem dava bom dia."</p>
+    <p>"Eu nem terminei o curso, tô na metade, e sou outra pessoa hoje. Converso com todo mundo. Saio sozinho, saio com amigo, tanto faz. Não sou mais igual eu era antes — sair, gastar dinheiro à toa e chegar em casa de ressaca sem ter falado com ninguém."</p>
+    <div class="quem">Fabricio<span>estava na metade do curso</span></div>
+  </div>
+
+  <div class="depo">
+    <p>"Vi um grupo de umas cinco meninas no barzinho. Deu aquele treco na barriga. Aí eu pensei: quer saber? Vou lá."</p>
+    <p>"Cheguei, troquei ideia. No começo elas acharam estranho, mas depois foi fluindo. O Ruan sempre fala que a vida se resume a isso: se desafiar todos os dias."</p>
+    <div class="quem">Junior<span>primeira semana de curso</span></div>
+  </div>
+
+  <div class="depo">
+    <p>"Antes eu tinha a mentalidade de que eu tinha que ser perfeito, de que eu tinha que chegar e falar alguma coisa extraordinária."</p>
+    <p>"Vendo o teu jeito, eu vi que só ir lá e ser eu já é o suficiente. Hoje eu sei que só de ir eu já venci — porque eu tô na frente daqueles que nem tentam."</p>
+    <div class="quem">Paulo Sergio<span>voltou ao jogo depois de um relacionamento</span></div>
+  </div>
 </section>
 
 <section class="w">
@@ -225,6 +301,13 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
     <div class="selo">7</div>
     <div><h3>7 dias, incondicional</h3>
       <p>Entra, assiste o que quiser, faz os exercícios. Se em 7 dias você achar que não é pra você, me manda uma mensagem e eu devolvo tudo. Sem pergunta.</p></div>
+  </div>
+
+  <div class="box destaque">
+    <h3>Tem um espaço vazio no fim do curso</h3>
+    <p>No último módulo eu deixei um lugar reservado. É pro <strong>teu</strong> depoimento.</p>
+    <p>Eu quero chegar no fim e ver você contando o que mudou. E deixa eu ser claro sobre uma coisa: não vou ter sido eu que te transformei. Vai ter sido você.</p>
+    <p style="margin-bottom:0">Eu só te dou o mapa. <strong>Quem tem que andar é você</strong> — e se você não executar, não vai mudar nada. Vai ser só mais um curso que você comprou por comprar.</p>
   </div>
 
   <div class="box">
