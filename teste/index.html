@@ -600,6 +600,9 @@ $("#form").addEventListener("submit", function(ev){
   };
 
   salvar("quiz_lead", lead);
+  /* marca quando o teste foi concluído: é daqui que saem as 48h do bônus.
+     Fica no aparelho dele, não numa contagem que reinicia a cada visita. */
+  if(!ler("quiz_concluido_em")) salvar("quiz_concluido_em", Date.now());
   evento(CFG.eventoLead, { content_name:"Quiz Codigo da Atracao", perfil:lead.perfil, trava:lead.trava });
 
   var bt = $("#btVer");
@@ -646,6 +649,8 @@ function irParaEspera(res){
     if(lead.nome)  p.set("nome",  lead.nome);
     if(lead.email) p.set("email", lead.email);
   }
+  var tc = ler("quiz_concluido_em");
+  if(tc) p.set("t", String(tc));
   var e = new URLSearchParams(location.search);
   ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","origem"].forEach(function(k){
     if(e.get(k)) p.set(k, e.get(k));
@@ -662,6 +667,8 @@ function irParaResultado(res){
     if(lead.nome)  p.set("nome",  lead.nome);
     if(lead.email) p.set("email", lead.email);
   }
+  var tc = ler("quiz_concluido_em");
+  if(tc) p.set("t", String(tc));
   var entrada = new URLSearchParams(location.search);
   ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","origem"].forEach(function(k){
     if(entrada.get(k)) p.set(k, entrada.get(k));

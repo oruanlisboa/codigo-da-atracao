@@ -335,6 +335,25 @@ body.com-barra{padding-top:46px}
   color:var(--dim);margin-left:auto}
 .depo .tag-video{display:flex;align-items:center;width:100%}
 
+/* ---------- bônus com prazo ---------- */
+.bonus{display:none;background:linear-gradient(180deg,rgba(201,162,39,.11),rgba(201,162,39,.04));
+  border:1px solid rgba(201,162,39,.45);border-radius:14px;padding:26px 24px;margin:28px 0}
+.bonus.on{display:block}
+.bonus .selo{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#241A18;
+  font-size:10.5px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;
+  padding:5px 12px;border-radius:99px;margin-bottom:14px}
+.bonus h3{font-size:clamp(21px,4.2vw,27px);margin:0 0 12px;color:#FFF9F6;letter-spacing:-.03em}
+.bonus p{font-size:16px;line-height:1.55;color:var(--mut);margin:0 0 12px}
+.bonus p:last-of-type{margin-bottom:0}
+.bonus strong{color:#FFF9F6}
+.bonus .cron{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-top:18px;padding-top:16px;border-top:1px solid rgba(201,162,39,.28)}
+.bonus .cron .lb{font-size:11px;font-weight:900;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold)}
+.bonus .cron .n{font-family:Figtree,sans-serif;font-size:26px;font-weight:900;color:#FFF9F6;
+  font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.bonus .rodape{font-size:13.5px;color:var(--dim);margin-top:10px;line-height:1.5}
+
 footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
 </style>
 </head>
@@ -624,6 +643,19 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
     <div class="tot"><span class="l">VALOR REAL</span><span class="v">R$ 1.220,90</span></div>
   </div>
 
+  <div class="bonus" id="bonusCall">
+    <span class="selo">Bônus de quem faz o teste</span>
+    <h3>A call dos 15 dias</h3>
+    <p>Quem entrar dentro do prazo abaixo ganha uma coisa que eu não vendo separado: uma <strong>call em grupo comigo, 15 dias depois da compra.</strong></p>
+    <p>Uma hora, ao vivo. Não é aula — é você chegando com o que travou na prática e a gente resolvendo ali.</p>
+    <p><strong>Por que 15 dias:</strong> é exatamente quando a maioria para. Você vai ter feito o Módulo 1, vai ter batido em alguma parede de verdade — e é aí que a conversa vale alguma coisa.</p>
+    <div class="cron">
+      <span class="lb">Termina em</span>
+      <span class="n" id="bonusCron">—</span>
+    </div>
+    <p class="rodape">Depois disso o curso continua o mesmo preço. Só a call sai.</p>
+  </div>
+
   <div class="preco">
     <div class="de">HOJE POR</div>
     <div class="val">R$ 997</div>
@@ -801,6 +833,62 @@ function ev(n,o){
   try{ if(window.gtag) window.gtag("event",n,o||{}); }catch(e){}
 }
 ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL"});
+
+/* ---------- bônus da call: 48h a partir da conclusão do teste ---------- */
+(function(){
+  var box = document.getElementById("bonusCall");
+  if(!box) return;
+
+  /* o instante vem da URL (funciona em outro aparelho) ou do próprio navegador.
+     Sem instante, não existe prazo — quem não fez o teste não vê contagem
+     nenhuma, porque seria um prazo inventado. */
+  var q = new URLSearchParams(location.search);
+  var t = parseInt(q.get("t"), 10);
+  if(!t){
+    try{ t = parseInt(localStorage.getItem("quiz_concluido_em"), 10); }catch(e){}
+  }
+  if(!t || isNaN(t)) return;
+
+  /* guarda no aparelho pra continuar valendo se ele voltar sem a URL */
+  try{ if(!localStorage.getItem("quiz_concluido_em")) localStorage.setItem("quiz_concluido_em", String(t)); }catch(e){}
+
+  var PRAZO = 48 * 60 * 60 * 1000;
+  var fim = t + PRAZO;
+  var alvo = document.getElementById("bonusCron");
+
+  function marcaCheckout(ativo){
+    ["#checkout","#checkout2"].forEach(function(s){
+      var a = document.querySelector(s);
+      if(!a) return;
+      try{
+        var u = new URL(a.href, location.origin);
+        if(ativo) u.searchParams.set("bonus","call");
+        else u.searchParams.delete("bonus");
+        a.href = u.toString();
+      }catch(e){}
+    });
+  }
+
+  function tic(){
+    var resta = fim - Date.now();
+    if(resta <= 0){
+      box.classList.remove("on");
+      marcaCheckout(false);
+      clearInterval(id);
+      return;
+    }
+    var hh = Math.floor(resta/3600000);
+    var mm = Math.floor((resta%3600000)/60000);
+    var ss = Math.floor((resta%60000)/1000);
+    alvo.textContent = hh + "h " + (mm<10?"0":"") + mm + "m " + (ss<10?"0":"") + ss + "s";
+    box.classList.add("on");
+  }
+
+  tic();
+  if(box.classList.contains("on")) marcaCheckout(true);
+  var id = setInterval(tic, 1000);
+})();
+
 
 /* ---------- VSL: carrega o player só no clique ---------- */
 (function(){
