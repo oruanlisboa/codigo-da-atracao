@@ -284,11 +284,44 @@ details p{margin:13px 0 0;color:var(--mut);font-size:16.5px}
 .aguarde .chegou a{display:inline-block;background:var(--red);color:#2A0C08;font-weight:900;
   font-size:15px;padding:13px 20px;border-radius:10px;text-decoration:none}
 
+/* ---------- barra fixa do diagnóstico a caminho ---------- */
+.barra-email{position:fixed;top:0;left:0;right:0;z-index:30;display:none;
+  background:#F0B429;color:#241A18;
+  padding:calc(9px + env(safe-area-inset-top,0px)) 16px 9px;
+  box-shadow:0 6px 22px -10px rgba(0,0,0,.65)}
+.barra-email.on{display:block}
+.barra-email .dentro{max-width:700px;margin:0 auto;display:flex;align-items:center;
+  gap:11px;justify-content:center;flex-wrap:wrap}
+.barra-email .ico{flex:0 0 auto;font-size:15px;line-height:1}
+.barra-email .txt{font-size:13.5px;font-weight:700;line-height:1.35;letter-spacing:-.01em}
+.barra-email .txt b{font-weight:900}
+.barra-email .cron{flex:0 0 auto;background:#241A18;color:#F0B429;font-weight:900;
+  font-size:14px;padding:4px 11px;border-radius:99px;font-variant-numeric:tabular-nums;
+  letter-spacing:-.01em;min-width:56px;text-align:center}
+.barra-email a{color:#241A18;font-weight:900;text-decoration:underline;font-size:13.5px}
+@media(max-width:420px){
+  .barra-email .txt{font-size:12.5px}
+  .barra-email .dentro{gap:8px}
+}
+/* empurra a página pra barra não cobrir o topo */
+body.com-barra{padding-top:46px}
+@media(max-width:420px){body.com-barra{padding-top:58px}}
+
 footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
 </style>
 </head>
 <body>
 <div class="glow"></div>
+
+<div class="barra-email" id="barraEmail" role="status" aria-live="polite">
+  <div class="dentro">
+    <span class="ico" aria-hidden="true">✉</span>
+    <span class="txt" id="barraTxt">Teu diagnóstico está a caminho do teu e-mail</span>
+    <span class="cron" id="barraCron">5:00</span>
+  </div>
+</div>
+
+
 
 <header class="w">
   <div class="aguarde" id="aguarde">
@@ -770,16 +803,40 @@ ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL
   var dq = document.getElementById("doquiz");
   if(dq) dq.classList.remove("on");
 
+  /* barra fixa no topo — a contagem acompanha a rolagem */
+  var barra   = document.getElementById("barraEmail");
+  var barraTx = document.getElementById("barraTxt");
+  var barraCr = document.getElementById("barraCron");
+  if(barra){
+    barra.classList.add("on");
+    document.body.classList.add("com-barra");
+  }
+
   var resta = 5*60, alvo = document.getElementById("relogio");
+  function pinta(){
+    var m = Math.floor(resta/60), s = resta % 60;
+    var txt = m + ":" + (s<10 ? "0"+s : s);
+    if(alvo)    alvo.textContent = txt;
+    if(barraCr) barraCr.textContent = txt;
+  }
+  pinta();
+
   var t = setInterval(function(){
     resta--;
     if(resta <= 0){
       clearInterval(t);
       box.classList.add("pronto");
+      if(barra){
+        barraCr.style.display = "none";
+        var destino = document.getElementById("linkDiag");
+        barraTx.innerHTML = "Teu diagnóstico já chegou — não achou? olha no spam. " +
+          (destino && destino.getAttribute("href") !== "#"
+            ? '<a href="' + destino.getAttribute("href") + '">Abrir aqui</a>'
+            : "");
+      }
       return;
     }
-    var m = Math.floor(resta/60), s = resta % 60;
-    alvo.textContent = m + ":" + (s<10 ? "0"+s : s);
+    pinta();
   }, 1000);
 })();
 
