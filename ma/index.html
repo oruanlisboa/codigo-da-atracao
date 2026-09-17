@@ -354,6 +354,19 @@ body.com-barra{padding-top:46px}
   font-variant-numeric:tabular-nums;letter-spacing:-.03em}
 .bonus .rodape{font-size:13.5px;color:var(--dim);margin-top:10px;line-height:1.5}
 
+.bonus .ancora{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  background:rgba(21,15,14,.42);border:1px solid rgba(201,162,39,.3);
+  border-radius:10px;padding:13px 16px;margin:14px 0 16px}
+.bonus .ancora .v{font-family:Figtree,sans-serif;font-size:21px;font-weight:900;
+  color:var(--gold);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.bonus .ancora .l{font-size:14px;color:var(--mut);line-height:1.4;flex:1;min-width:180px}
+.bonus .vagas{display:flex;align-items:center;gap:11px;flex-wrap:wrap;
+  margin-top:18px;padding-top:16px;border-top:1px solid rgba(201,162,39,.28)}
+.bonus .vagas .n{font-family:Figtree,sans-serif;font-size:26px;font-weight:900;
+  color:#FFF9F6;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.bonus .vagas .t{font-size:14px;color:var(--mut);line-height:1.4}
+.bonus .vagas .t b{color:var(--gold)}
+
 footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
 </style>
 </head>
@@ -644,16 +657,24 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
   </div>
 
   <div class="bonus" id="bonusCall">
-    <span class="selo">Bônus de quem faz o teste</span>
-    <h3>A call dos 15 dias</h3>
-    <p>Quem entrar dentro do prazo abaixo ganha uma coisa que eu não vendo separado: uma <strong>call em grupo comigo, 15 dias depois da compra.</strong></p>
-    <p>Uma hora, ao vivo. Não é aula — é você chegando com o que travou na prática e a gente resolvendo ali.</p>
-    <p><strong>Por que 15 dias:</strong> é exatamente quando a maioria para. Você vai ter feito o Módulo 1, vai ter batido em alguma parede de verdade — e é aí que a conversa vale alguma coisa.</p>
-    <div class="cron">
-      <span class="lb">Termina em</span>
-      <span class="n" id="bonusCron">—</span>
+    <span class="selo">Bônus de quem entrar agora</span>
+    <h3>Uma call em grupo comigo</h3>
+
+    <div class="ancora">
+      <span class="v">R$ 4.997</span>
+      <span class="l">é quanto custa 30 dias de acompanhamento individual comigo. <strong>Isso aqui não é a mentoria</strong> — e eu não vou fingir que é.</span>
     </div>
-    <p class="rodape">Depois disso o curso continua o mesmo preço. Só a call sai.</p>
+
+    <p>É <strong>uma hora, ao vivo</strong>, comigo e mais 14 alunos. Você chega com o que travou na prática e a gente resolve ali. Não é aula — é o teu caso, na frente de quem está no mesmo ponto.</p>
+    <p><strong>A data a gente marca junto</strong>, no grupo, depois que a turma fechar. Ninguém perde por causa de agenda.</p>
+    <p>Vai junto, de graça, pra quem entrar agora e concluir a compra.</p>
+
+    <div class="vagas">
+      <span class="n">15</span>
+      <span class="t">lugares na turma. <b>Quando encher, fecha</b> — e pode ser hoje. Não tem segunda chamada nem lista de espera.</span>
+    </div>
+
+    <p class="rodape">Se o bloco sumir, é porque a turma fechou. O curso continua o mesmo preço — sai só a call.</p>
   </div>
 
   <div class="preco">
@@ -834,27 +855,19 @@ function ev(n,o){
 }
 ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL"});
 
-/* ---------- bônus da call: 48h a partir da conclusão do teste ---------- */
+/* ---------- bônus da call ----------
+   A escassez aqui é de vaga, não de relógio: a turma tem 15 lugares e
+   fecha quando enche. Por isso não existe contagem regressiva — um
+   cronômetro afirmaria um prazo que não é o que determina o fechamento.
+
+   Para fechar a turma, troque TURMA_ABERTA para false. O bloco some,
+   o checkout deixa de marcar bonus=call e a página segue no mesmo preço.
+   ------------------------------------------------------------------- */
+var TURMA_ABERTA = true;
+
 (function(){
   var box = document.getElementById("bonusCall");
   if(!box) return;
-
-  /* o instante vem da URL (funciona em outro aparelho) ou do próprio navegador.
-     Sem instante, não existe prazo — quem não fez o teste não vê contagem
-     nenhuma, porque seria um prazo inventado. */
-  var q = new URLSearchParams(location.search);
-  var t = parseInt(q.get("t"), 10);
-  if(!t){
-    try{ t = parseInt(localStorage.getItem("quiz_concluido_em"), 10); }catch(e){}
-  }
-  if(!t || isNaN(t)) return;
-
-  /* guarda no aparelho pra continuar valendo se ele voltar sem a URL */
-  try{ if(!localStorage.getItem("quiz_concluido_em")) localStorage.setItem("quiz_concluido_em", String(t)); }catch(e){}
-
-  var PRAZO = 48 * 60 * 60 * 1000;
-  var fim = t + PRAZO;
-  var alvo = document.getElementById("bonusCron");
 
   function marcaCheckout(ativo){
     ["#checkout","#checkout2"].forEach(function(s){
@@ -869,24 +882,9 @@ ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL
     });
   }
 
-  function tic(){
-    var resta = fim - Date.now();
-    if(resta <= 0){
-      box.classList.remove("on");
-      marcaCheckout(false);
-      clearInterval(id);
-      return;
-    }
-    var hh = Math.floor(resta/3600000);
-    var mm = Math.floor((resta%3600000)/60000);
-    var ss = Math.floor((resta%60000)/1000);
-    alvo.textContent = hh + "h " + (mm<10?"0":"") + mm + "m " + (ss<10?"0":"") + ss + "s";
-    box.classList.add("on");
-  }
-
-  tic();
-  if(box.classList.contains("on")) marcaCheckout(true);
-  var id = setInterval(tic, 1000);
+  if(!TURMA_ABERTA){ marcaCheckout(false); return; }
+  box.classList.add("on");
+  marcaCheckout(true);
 })();
 
 
