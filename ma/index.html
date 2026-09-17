@@ -181,6 +181,53 @@ details p{margin:13px 0 0;color:var(--mut);font-size:16.5px}
   letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:9px}
 .depo .tag-video::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red)}
 
+/* ---------- carrossel de módulos ---------- */
+.carro{margin:28px 0 8px;position:relative}
+.carro .trilho{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:4px 20px 18px;margin-inline:-20px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.carro .trilho::-webkit-scrollbar{display:none}
+.mcard{flex:0 0 268px;scroll-snap-align:center;background:var(--surf);border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .18s}
+.mcard.alvo{border-color:var(--red);box-shadow:0 0 0 1px var(--red)}
+.mcard .capa{position:relative;aspect-ratio:708/1490;max-height:352px;overflow:hidden;background:#0b0807}
+.mcard .capa img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.mcard .capa::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;
+  background:linear-gradient(to top,var(--surf),rgba(36,26,24,0))}
+.mcard .selo{position:absolute;top:10px;right:10px;z-index:2;background:var(--red);color:#2A0C08;
+  font-size:9.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;
+  padding:4px 9px;border-radius:99px;display:none}
+.mcard.alvo .selo{display:block}
+.mcard .corpo{padding:0 18px 20px;margin-top:-16px;position:relative;z-index:1;flex:1;
+  display:flex;flex-direction:column}
+.mcard .num{font-size:10.5px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dim);font-variant-numeric:tabular-nums}
+.mcard h4{font-size:19px;font-weight:900;letter-spacing:-.03em;line-height:1.1;
+  color:#FFF9F6;margin:5px 0 4px}
+.mcard .qtd{font-size:11.5px;font-weight:800;color:var(--red);letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:12px}
+.mcard .resumo{font-size:14.5px;color:var(--mut);line-height:1.45;margin-bottom:13px}
+.mcard ul{list-style:none;padding:0;margin:0 0 2px;border-top:1px solid var(--line);padding-top:11px}
+.mcard ul li{position:relative;padding-left:16px;font-size:13px;color:var(--dim);
+  line-height:1.45;margin-bottom:5px}
+.mcard ul li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;
+  border-radius:50%;background:var(--line2)}
+.mcard.alvo ul li::before{background:var(--red-md)}
+.carro .nav{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:0 2px;margin-top:2px}
+.carro .pontos{display:flex;gap:6px;flex-wrap:wrap}
+.carro .pontos i{width:7px;height:7px;border-radius:50%;background:var(--line2);
+  transition:background .18s,width .18s}
+.carro .pontos i.at{background:var(--red);width:20px;border-radius:99px}
+.carro .setas{display:flex;gap:8px}
+.carro .setas button{width:38px;height:38px;border-radius:50%;background:var(--surf);
+  border:1px solid var(--line2);color:var(--ink);font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-family:inherit;padding:0}
+.carro .setas button:hover{border-color:var(--red);color:var(--red)}
+.carro .setas button:disabled{opacity:.3;cursor:default;border-color:var(--line)}
+.carro .setas button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.carro .dica{font-size:12.5px;color:var(--dim);text-align:center;margin-top:12px}
+@media(min-width:760px){ .mcard{flex-basis:288px} }
+
 footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
 </style>
 </head>
@@ -321,24 +368,7 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
   <h2>Os 8 módulos</h2>
   <p>A ordem importa: cada módulo usa o material que o anterior produziu.</p>
 
-  <ol class="mod" id="modulos">
-    <li data-p="1"><span class="marca">teu gargalo</span><span class="n">Módulo 1 · 6 aulas</span><b>Interação básica</b>
-      <span class="d">Sair da zona de conforto e entrar em campo, com as aulas gravadas na rua em Gramado. O exercício aqui é de propósito ridículo de fácil — a função não é gerar conexão, é gerar frequência.</span></li>
-    <li data-p="2"><span class="marca">teu gargalo</span><span class="n">Módulo 2 · 3 aulas</span><b>O que falar</b>
-      <span class="d">De onde o assunto realmente vem. Você não precisa ter o que falar — pode falar a primeira asneira que vier. O que trava não é a falta de assunto: é a exigência de que ele seja bom.</span></li>
-    <li data-p="3"><span class="marca">teu gargalo</span><span class="n">Módulo 3 · 3 aulas</span><b>Quebrando crenças limitantes</b>
-      <span class="d">Identificar o pensamento, separar o que é fato do que é sugestão, e desmontar a crença com prova concreta — usando o caderno dos módulos 1 e 2, porque de memória não funciona.</span></li>
-    <li data-p="4"><span class="marca">teu gargalo</span><span class="n">Módulo 4 · 2 aulas</span><b>Autoaceitação</b>
-      <span class="d">Teoria e prática. Parar de brigar com o que já aconteceu pra sobrar energia pro que ainda vai acontecer.</span></li>
-    <li data-p="5"><span class="marca">teu gargalo</span><span class="n">Módulo 5</span><b>Estado de flow</b>
-      <span class="d">A energia que não é emprestada da galera, do álcool nem do dia bom. É o que separa quem tem resultado às vezes de quem tem sempre.</span></li>
-    <li data-p="6"><span class="marca">teu gargalo</span><span class="n">Módulo 6</span><b>Imperfeito</b>
-      <span class="d">O custo do personagem inabalável que você construiu pra ser aceito — e por que é exatamente ele que impede qualquer pessoa de chegar perto.</span></li>
-    <li data-p="7"><span class="marca">teu gargalo</span><span class="n">Módulo 7 · 9 aulas</span><b>Confiança e liderança</b>
-      <span class="d">O módulo mais denso. Linguagem corporal, tonalidade de voz, tensão, agregar valor em relação de longo prazo, escassez genuína em duas partes, e o poder do silêncio — não precisar responder na hora.</span></li>
-    <li><span class="n">Módulo 8 · 6 aulas</span><b>Infields</b>
-      <span class="d">Abordagens reais na rua, com comentário em cima. É aqui que a teoria vira imagem.</span></li>
-  </ol>
+    
 </section>
 
 <section class="w">
@@ -576,8 +606,7 @@ if(perfil&&PERF[perfil]&&gargalo>=1&&gargalo<=7){
   $("#doquizTxt").innerHTML=(nome?nome+", o ":"O ")+"teu resultado foi <b>"+PERF[perfil]+
     "</b> e o teu gargalo é <b>"+PIL[gargalo]+"</b> — o Módulo "+gargalo+" do curso.";
   $("#doquiz").classList.add("on");
-  var li=document.querySelector('#modulos li[data-p="'+gargalo+'"]');
-  if(li) li.classList.add("alvo");
+  /* o destaque do módulo acontece no carrossel, mais abaixo */
 }
 
 var p=new URLSearchParams();
@@ -601,6 +630,55 @@ function ev(n,o){
   try{ if(window.gtag) window.gtag("event",n,o||{}); }catch(e){}
 }
 ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL"});
+
+/* ---------- carrossel de módulos ---------- */
+(function(){
+  var trilho = document.getElementById("trilhoModulos");
+  if(!trilho) return;
+  var cards  = Array.prototype.slice.call(trilho.querySelectorAll(".mcard"));
+  var pontos = document.getElementById("pontosModulos");
+  var ant = document.getElementById("mAnt"), prox = document.getElementById("mProx");
+
+  cards.forEach(function(){
+    var p = document.createElement("i");
+    p.setAttribute("aria-hidden","true");
+    pontos.appendChild(p);
+  });
+  var bolinhas = Array.prototype.slice.call(pontos.children);
+
+  function largura(){
+    return cards.length > 1 ? (cards[1].offsetLeft - cards[0].offsetLeft) : cards[0].offsetWidth + 14;
+  }
+  function pinta(){
+    var i = Math.max(0, Math.min(cards.length-1, Math.round(trilho.scrollLeft / largura())));
+    bolinhas.forEach(function(b,k){ b.classList.toggle("at", k===i); });
+    ant.disabled  = trilho.scrollLeft < 8;
+    prox.disabled = trilho.scrollLeft > trilho.scrollWidth - trilho.clientWidth - 8;
+  }
+  function vai(d){ trilho.scrollBy({ left: d*largura(), behavior:"smooth" }); }
+
+  ant.addEventListener("click", function(){ vai(-1); });
+  prox.addEventListener("click", function(){ vai(1); });
+  trilho.addEventListener("scroll", pinta, { passive:true });
+  trilho.addEventListener("keydown", function(e){
+    if(e.key === "ArrowRight"){ e.preventDefault(); vai(1); }
+    if(e.key === "ArrowLeft"){  e.preventDefault(); vai(-1); }
+  });
+  pinta();
+
+  var g = parseInt(new URLSearchParams(location.search).get("gargalo"), 10);
+  if(g >= 1 && g <= 7){
+    var alvo = trilho.querySelector('.mcard[data-p="'+g+'"]');
+    if(alvo){
+      alvo.classList.add("alvo");
+      setTimeout(function(){
+        trilho.scrollTo({ left: alvo.offsetLeft - trilho.offsetLeft - 16, behavior:"auto" });
+        pinta();
+      }, 120);
+    }
+  }
+})();
+
 
 /* ---------- monta a prova em vídeo ---------- */
 (function(){
