@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DESTRAVA — pare de travar, saiba o que falar</title>
+<meta name="description" content="O método em 7 pilares para parar de travar, saber o que falar e ter presença em qualquer lugar. R$19,90.">
+<meta name="theme-color" content="#150F0E">
+<meta property="og:title" content="DESTRAVA — você não nasceu travado">
+<meta property="og:description" content="Meu curso custa R$997. Coloquei o método inteiro num livro de R$19,90.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800;900&display=swap">
+<style>
+:root{--bg:#150F0E;--bg2:#1E1614;--surf:#241A18;--surf2:#2E211E;--line:#3A2A27;--line2:#4A3733;
+ --ink:#F0E7E1;--mut:#A89792;--dim:#7E6C67;--red:#E0402F;--red-md:#B32B22;--red-dp:#5E1210;--ok:#3FA97B}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,sans-serif;
+ font-size:17.5px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.glow{position:fixed;inset:0;pointer-events:none;z-index:0;
+ background:radial-gradient(92% 52% at 80% 0%,rgba(224,64,47,.26),rgba(0,0,0,0) 58%)}
+.w{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:0 20px}
+h1,h2,h3,h4{font-weight:900;letter-spacing:-.035em;line-height:1.05;text-wrap:balance}
+p{margin:0 0 1.05em}
+strong{font-weight:800;color:#FFF9F6}
+em{font-style:italic;color:#DCCFC9}
+.eyebrow{font-size:11px;font-weight:900;letter-spacing:.26em;text-transform:uppercase;color:var(--red)}
+hr{border:0;border-top:1px solid var(--line);margin:46px 0}
+section{padding-block:40px}
+h2{font-size:clamp(27px,5.4vw,38px);margin-bottom:20px}
+h3{font-size:21px;margin:30px 0 10px}
+
+header{padding-block:40px 30px}
+h1{font-size:clamp(31px,6.6vw,50px);margin:16px 0 20px}
+h1 mark{background:none;color:var(--red)}
+.sub{font-size:clamp(17.5px,2.7vw,21px);color:var(--mut);font-weight:600;
+ line-height:1.42;letter-spacing:-.012em;margin-bottom:26px}
+
+/* faixa do quiz */
+.doquiz{display:none;background:rgba(94,18,16,.24);border:1px solid var(--red-md);
+ border-radius:12px;padding:18px 20px;margin-bottom:26px}
+.doquiz.on{display:block}
+.doquiz .t{font-size:11.5px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--red);display:block;margin-bottom:7px}
+.doquiz p{margin:0;font-size:16.5px;line-height:1.5;color:var(--ink)}
+.doquiz b{color:#FFF9F6}
+
+/* CTA */
+.cta-bloco{margin:30px 0}
+.cta{display:block;background:var(--red);color:#2A0C08;font-weight:900;text-align:center;
+ font-size:clamp(16.5px,3.7vw,20px);letter-spacing:-.015em;padding:22px 20px;border-radius:12px;
+ text-decoration:none;box-shadow:0 12px 34px -14px rgba(224,64,47,.9);line-height:1.2;
+ transition:transform .12s}
+.cta:active{transform:scale(.99)}
+.cta small{display:block;font-size:13px;font-weight:700;opacity:.72;margin-top:5px;letter-spacing:0}
+.cta-sub{text-align:center;font-size:13.5px;color:var(--dim);margin-top:12px;line-height:1.5}
+
+/* blocos */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:11px;margin:26px 0}
+.card{background:var(--surf);border:1px solid var(--line);border-left:3px solid var(--red);
+ border-radius:10px;padding:17px 19px}
+.card b{display:block;font-size:16.5px;font-weight:800;color:#FFF9F6;margin-bottom:4px;letter-spacing:-.02em}
+.card span{font-size:15px;color:var(--mut);line-height:1.45}
+.box{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:24px;margin:28px 0}
+.box h3{margin-top:0}
+.box p:last-child{margin-bottom:0}
+.box.destaque{border-color:var(--red-md);background:rgba(94,18,16,.22)}
+.impacto{border-left:3px solid var(--red);padding:4px 0 4px 20px;margin:30px 0;
+ font-size:clamp(20px,4.2vw,25px);font-weight:800;letter-spacing:-.03em;line-height:1.3;color:#FFF9F6}
+
+/* pilares */
+ol.pilares{list-style:none;padding:0;margin:26px 0;counter-reset:p}
+ol.pilares li{counter-increment:p;position:relative;padding-left:54px;margin-bottom:26px}
+ol.pilares li::before{content:counter(p);position:absolute;left:0;top:-3px;width:38px;height:38px;
+ border:1.5px solid var(--red-md);border-radius:10px;color:var(--red);font-weight:900;font-size:16px;
+ display:flex;align-items:center;justify-content:center}
+ol.pilares li.alvo::before{background:var(--red);color:#2A0C08;border-color:var(--red)}
+ol.pilares b{display:block;font-size:18px;font-weight:800;color:#FFF9F6;letter-spacing:-.02em;margin-bottom:3px}
+ol.pilares .frase{display:block;font-size:15.5px;color:var(--red);font-style:italic;margin-bottom:6px;line-height:1.4}
+ol.pilares span.d{display:block;font-size:16px;color:var(--mut);line-height:1.46}
+ol.pilares li.alvo .marca{display:inline-block;background:var(--red);color:#2A0C08;font-size:10.5px;
+ font-weight:900;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:99px;margin-bottom:6px}
+.marca{display:none}
+
+/* listas */
+ul.bullets{list-style:none;padding:0;margin:24px 0}
+ul.bullets li{position:relative;padding-left:28px;margin-bottom:13px;font-size:17px;line-height:1.5}
+ul.bullets li::before{content:"";position:absolute;left:2px;top:9px;width:9px;height:9px;
+ border-radius:50%;background:var(--red)}
+ul.bullets.nao li::before{background:var(--dim)}
+ul.bullets.ok li::before{background:var(--ok)}
+
+/* preço */
+.stack{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:8px 22px;margin:26px 0}
+.stack div{display:flex;gap:14px;align-items:baseline;padding:13px 0;font-size:16.5px}
+.stack div+div{border-top:1px solid var(--line)}
+.stack .l{flex:1;color:var(--mut);line-height:1.4}
+.stack .v{flex:0 0 auto;font-weight:800;color:var(--ink)}
+.stack .tot{font-weight:900;color:#FFF9F6}
+.stack .tot .v{color:var(--dim);text-decoration:line-through}
+.preco{text-align:center;margin:34px 0 8px}
+.preco .de{font-size:15px;color:var(--dim);font-weight:700;letter-spacing:.06em}
+.preco .val{font-size:clamp(56px,14vw,86px);font-weight:900;letter-spacing:-.05em;
+ line-height:1;color:var(--red);margin:6px 0}
+.preco .obs{font-size:16.5px;color:var(--mut);font-weight:700}
+
+/* garantia */
+.garantia{display:flex;gap:16px;align-items:flex-start;background:var(--surf);
+ border:1px solid var(--line2);border-radius:12px;padding:22px;margin:28px 0}
+.garantia .selo{flex:0 0 auto;width:46px;height:46px;border-radius:50%;border:2px solid var(--ok);
+ color:var(--ok);font-size:22px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.garantia h3{margin:0 0 6px;font-size:19px}
+.garantia p{margin:0;font-size:15.5px;color:var(--mut);line-height:1.5}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding:17px 0}
+summary{cursor:pointer;font-weight:800;font-size:17.5px;color:#FFF9F6;letter-spacing:-.02em;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:var(--red);font-weight:900;font-size:21px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:13px 0 0;color:var(--mut);font-size:16.5px}
+
+/* autor */
+.autor{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:24px;margin:28px 0}
+.autor .lema{font-size:clamp(21px,4.4vw,27px);font-weight:900;letter-spacing:-.03em;
+ color:var(--red);text-align:center;margin-top:18px}
+
+footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
+
+/* barra fixa mobile */
+.fixa{position:fixed;left:0;right:0;bottom:0;z-index:9;padding:12px 20px calc(12px + env(safe-area-inset-bottom));
+ background:rgba(21,15,14,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+ transform:translateY(120%);transition:transform .3s}
+.fixa.on{transform:none}
+.fixa a{display:block;max-width:660px;margin:0 auto;background:var(--red);color:#2A0C08;
+ font-weight:900;text-align:center;font-size:16.5px;padding:16px;border-radius:10px;text-decoration:none}
+@media(min-width:760px){.fixa{display:none}}
+body{padding-bottom:0}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<!-- ============ TOPO ============ -->
+<header class="w">
+  <div class="doquiz" id="doquiz">
+    <span class="t">Continuando do teu teste</span>
+    <p id="doquizTxt"></p>
+  </div>
+
+  <span class="eyebrow">Inteligência social na prática</span>
+  <h1>Você não nasceu <mark>travado</mark>.<br>Você só nunca entrou em campo o suficiente pra descobrir isso.</h1>
+  <p class="sub">O método em 7 pilares que tira o cara que trava, inventa desculpa e volta pra casa de mãos vazias — e transforma no cara que fala com qualquer pessoa, em qualquer lugar. Sem frase pronta, sem personagem e sem virar o chato do rolê.</p>
+
+  <div class="cta-bloco">
+    <a class="cta" href="#oferta" data-cta="topo">QUERO DESTRAVAR<small>R$ 19,90 · acesso imediato</small></a>
+    <p class="cta-sub">7 dias de garantia · menos que um lanche</p>
+  </div>
+</header>
+
+<!-- ============ DOR ============ -->
+<section class="w">
+  <h2>Você já viveu isso mais vezes do que gostaria de admitir.</h2>
+
+  <p>Você tá num lugar. Vê alguém. E nos primeiros três segundos você sabe exatamente o que quer fazer.</p>
+  <p>Aí o resto da tua cabeça chega.</p>
+  <p><em>"Melhor não agora." "Ela tá com as amigas." "Vou esperar ela ir pro bar." "Que que eu falo?"</em> E você fica ali montando a frase perfeita, refinando, melhorando — até que você olha e ela já foi embora. E o alívio que você sente naquele segundo é a pior parte de tudo, porque você sabe que dali a uma hora ele vira outra coisa.</p>
+  <p>Você volta pra casa. Não é derrota, porque derrota significa que você jogou. É <strong>nada</strong>. Mais uma noite que não aconteceu.</p>
+  <p>E na segunda-feira você abre o Instagram e vê um cara com metade do teu conteúdo, metade da tua aparência e um décimo da tua cabeça — cercado de gente.</p>
+  <p>Aí vem o pensamento que fode tudo:</p>
+
+  <p class="impacto">"Eu nasci assim. Uns nascem com isso, eu não nasci."</p>
+
+  <p>Eu sei que você pensa isso porque <strong>eu pensei exatamente isso durante anos.</strong> Eu era o menor da fila do colégio. Me chamavam de cabeçudo, depois de baixinho, depois de narigudo. Eu tenho 1,68m — medido de tênis. E eu tinha absoluta certeza de que tinha nascido travado e que ia morrer travado.</p>
+  <p>Nunca me passou pela cabeça que dava pra desenvolver.</p>
+</section>
+
+<hr class="w" style="max-width:660px">
+
+<!-- ============ QUEBRA DE CRENÇA ============ -->
+<section class="w">
+  <span class="eyebrow">Três desculpas</span>
+  <h2 style="margin-top:14px">Deixa eu tirar três desculpas da tua mão. Uma de cada vez.</h2>
+
+  <h3>"É porque eu não sou bonito"</h3>
+  <p>Você já viu. Todo mundo já viu. O cara cinco níveis abaixo de você na aparência com alguém que você olharia duas vezes. Se atração fosse rosto, isso seria <strong>impossível</strong>. Não é impossível. É toda semana.</p>
+
+  <h3>"É porque eu não tenho grana"</h3>
+  <p>Dinheiro compra acesso. Compra o lugar, a mesa, a viagem. Não compra ela continuar interessada na terceira conversa. Todo mundo conhece um cara com dinheiro e sozinho — e um cara duro que é o mais concorrido do grupo de amigos.</p>
+
+  <h3>"É porque ele nasceu com facilidade"</h3>
+  <p>Essa é a mais confortável das três, e por isso é a mais perigosa: <strong>ela te libera de tentar.</strong></p>
+  <p>Mas repara numa coisa. Ninguém olha pro cara que levanta cem quilos na academia e conclui <em>"nasci fraco, vou morrer fraco"</em>. Todo mundo entende, na hora, que o cara treinou. Agora, quando o assunto é socializar, a gente joga essa lógica no lixo. Vê o cara que conversa com facilidade e decide que é dom. Que é personalidade. E se é personalidade, não dá pra mudar.</p>
+
+  <p class="impacto">Não é dom. É volume de exposição.</p>
+
+  <p>O cara desenrolado não tem repertório melhor que o teu. Ele tem mais horas de campo. Só isso. E hora de campo é a única coisa dessa história que ninguém pode comprar, terceirizar ou acelerar por você.</p>
+</section>
+
+<!-- ============ MECANISMO ============ -->
+<section class="w">
+  <span class="eyebrow">O mecanismo</span>
+  <h2 style="margin-top:14px">A parte que quase ninguém percebe</h2>
+
+  <p>Eu tenho um aluno, o Rodrigo, 25 anos. Ele me contou que ligou pro pai e falou:</p>
+
+  <div class="box">
+    <p><em>"Pai, eu não consigo me conectar com as pessoas. Como é que eu vou arranjar emprego sem me conectar com as pessoas? Como é que eu vou criar laços de amizade fortes sem me conectar com as pessoas?"</em></p>
+  </div>
+
+  <p>Repara: ele <strong>não ligou preocupado com mulher.</strong> Ligou preocupado com emprego e amizade.</p>
+
+  <div class="cards">
+    <div class="card"><b>Você trava pra puxar assunto com uma mulher</b><span>é medo do julgamento dela.</span></div>
+    <div class="card"><b>Você trava pra pedir aumento</b><span>é medo do julgamento do chefe.</span></div>
+    <div class="card"><b>Você trava pra fechar uma venda</b><span>é medo do julgamento do cliente.</span></div>
+    <div class="card"><b>Você trava pra falar numa mesa de dez</b><span>é medo do julgamento de todo mundo ali.</span></div>
+  </div>
+
+  <p><strong>É o mesmo mecanismo. Exatamente o mesmo. O que muda é só o cenário.</strong></p>
+  <p>O medo da rejeição não é de homem pra mulher. <strong>É de pessoa pra pessoa.</strong> E no dia em que essa ficha cai, você começa a olhar pra tudo de um jeito diferente.</p>
+
+  <p class="impacto">Você não tem sete problemas. Você tem um, aparecendo em sete lugares.</p>
+
+  <p>É por isso que comprar sete cursos não resolve — cada um ataca um sintoma diferente do mesmo motor. E é por isso que <strong>7 pilares resolvem</strong>: porque eles são o mesmo mecanismo visto de sete ângulos, na ordem certa, cada um usando o material que o anterior produziu.</p>
+
+  <div class="cta-bloco">
+    <a class="cta" href="#oferta" data-cta="mecanismo">QUERO ACESSAR O MÉTODO<small>R$ 19,90 · acesso imediato</small></a>
+  </div>
+</section>
+
+<hr class="w" style="max-width:660px">
+
+<!-- ============ PRODUTO ============ -->
+<section class="w">
+  <span class="eyebrow">O produto</span>
+  <h2 style="margin-top:14px;font-size:clamp(36px,8vw,58px)">DESTRAVA</h2>
+  <p class="sub">Como parar de travar, saber o que falar e ter presença em qualquer lugar.</p>
+
+  <p>Eu vou ser honesto sobre o que isso é — e principalmente sobre o que não é.</p>
+  <p>Eu tenho um curso chamado <strong>Masculinidade Autêntica</strong>: 39 aulas, sete horas de vídeo, 80% prática. Um monte de gente me pediu pra transformar aquilo em texto. E eu, sinceramente, estava sem o menor saco de sentar e digitar sete horas de aula.</p>
+  <p>Então fiz o seguinte: joguei todas as aulas numa inteligência artificial, transcrevi tudo, e reescrevi por cima. Isso mesmo. <strong>Boa parte do que você vai ler aqui saiu da minha boca num vídeo antes de virar letra.</strong></p>
+
+  <h3>Por que eu tô te contando isso?</h3>
+  <p><strong>Primeiro porque eu não tenho vergonha.</strong> O conteúdo é ouro. Eu sei que é ouro porque eu apanhei pra caramba pra descobrir cada coisa que tá aqui. Cada história que você vai ler aconteceu comigo de verdade, e várias delas eu preferia que não tivessem acontecido.</p>
+  <p><strong>Segundo, e mais importante:</strong> se você tá esperando um tratado acadêmico de comunicação, você vai se decepcionar e a culpa vai ser minha por não ter avisado. Isso aqui é um cara falando com você. Tem palavrão, tem gíria, tem frase malfeita. É como eu falo.</p>
+  <p>E eu repito coisa. De propósito. Você vai ver a mesma sacada aparecer no Pilar 2, voltar no 4 e reaparecer no 6. Não é preguiça de editar. É porque eu preciso que aquilo grude na tua cabeça pra você não passar pelas mesmas merdas que eu passei.</p>
+  <p>Combinado? Beleza. Vamos meter bala.</p>
+</section>
+
+<!-- ============ PILARES ============ -->
+<section class="w">
+  <span class="eyebrow">O método</span>
+  <h2 style="margin-top:14px">Os 7 pilares</h2>
+
+  <div class="box destaque">
+    <p>A ordem <strong>não é estética.</strong> O Pilar 3 só funciona se você tiver o caderno dos Pilares 1 e 2. O Pilar 7 só funciona se você tiver passado pelo 3.</p>
+    <p style="margin-bottom:0">Você vai querer pular. Vai ler o Pilar 1 e pensar <em>"isso eu já faço, vou direto pra parte boa"</em>. Eu sei, porque eu também faço isso. <strong>Não pula.</strong> Quem pula a base chega no meio do livro de mãos vazias.</p>
+  </div>
+
+  <ol class="pilares" id="pilares">
+    <li data-p="1"><span class="marca">teu gargalo</span><b>Entre em campo</b>
+      <span class="frase">A primeira interação não pode ser importante. Ela precisa ser pequena, boba e diária.</span>
+      <span class="d">Todo mundo que decide melhorar socialmente comete o mesmo erro de estreia: escolhe uma situação que importa. Aqui você entende por que o exercício é ridiculamente fácil de propósito — a função dele não é gerar conexão, é gerar <strong>frequência</strong>.</span></li>
+
+    <li data-p="2"><span class="marca">teu gargalo</span><b>Não existe frase pronta</b>
+      <span class="frase">Você não está sem assunto. Você está procurando no lugar errado.</span>
+      <span class="d">Eu acreditei numa fórmula mágica por boa parte da minha vida. A frase certa, a abertura infalível. Não existe — e aqui eu te mostro onde o assunto realmente está e o que eu falo de verdade quando chego em alguém.</span></li>
+
+    <li data-p="3"><span class="marca">teu gargalo</span><b>Você não é o seu pensamento</b>
+      <span class="frase">O pensamento é uma sugestão que chega até você. Não é uma ordem, e não é uma verdade.</span>
+      <span class="d">Quantas vezes você deixou de agir por causa de um pensamento que você tratou como fato? Aqui você desmonta as tuas próprias crenças — com a lista das 10, identificadas com prova concreta.</span></li>
+
+    <li data-p="4"><span class="marca">teu gargalo</span><b>Pare de procurar culpado</b>
+      <span class="frase">Não é o tropeço que vira trauma. É a recusa em aceitar que ele aconteceu.</span>
+      <span class="d">Toda vez que algo dá errado, tem uma bifurcação: aceitar, ou sair caçando responsável. Eu morei no segundo caminho — e aqui eu conto três histórias que eu preferia não contar.</span></li>
+
+    <li data-p="5"><span class="marca">teu gargalo</span><b>Estado de flow</b>
+      <span class="frase">Filtro, não beleza. Você escolhe — ou é escolhido pelo que sobra?</span>
+      <span class="d">A energia que não é emprestada: nem da galera, nem da dose, nem do dia bom. Inclui a parte que quase ninguém tem coragem de fazer e que é a que mais destrava: <strong>sair sozinho</strong>.</span></li>
+
+    <li data-p="6"><span class="marca">teu gargalo</span><b>Imperfeito</b>
+      <span class="frase">Conexão precisa de brecha. Personagem perfeito não tem brecha nenhuma.</span>
+      <span class="d">O que a máscara custa. Por que o cara inabalável que você construiu pra ser aceito é exatamente o que impede qualquer pessoa de chegar perto de você.</span></li>
+
+    <li data-p="7"><span class="marca">teu gargalo</span><b>Voz, olhar e silêncio</b>
+      <span class="frase">Três ajustes bastam. E nenhum deles é técnica de locutor de rádio.</span>
+      <span class="d">A camada final: tonalidade, ritmo, pausa e a coisa mais subestimada de todas — <strong>o poder do silêncio</strong>. Aqui também entra liderar, que é basicamente decidir.</span></li>
+  </ol>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="w">
+  <h2>Como cada pilar funciona</h2>
+  <p>Cada um tem três partes, e <strong>as três importam</strong>:</p>
+
+  <div class="cards">
+    <div class="card"><b>📖 O entendimento</b><span>Por que você trava, com a história real de como eu descobri isso apanhando.</span></div>
+    <div class="card"><b>✍️ O exercício</b><span>Passo a passo, com prazo. Tá tudo dentro do livro — você não precisa de mais nada além de um caderno.</span></div>
+    <div class="card"><b>☑️ O checklist</b><span>O que tem que estar pronto antes de virar a página.</span></div>
+  </div>
+
+  <div class="box">
+    <h3>E o caderno não é firula</h3>
+    <p style="margin-bottom:0">Em todos os pilares eu vou te mandar anotar. Anota mesmo. Não é pra "refletir sobre a jornada" — é matéria-prima bruta. A partir do Pilar 3, essas anotações viram o material com que você desmonta as tuas próprias crenças. E não dá pra fazer de memória, porque a sua memória apaga justamente o que te incomoda.</p>
+  </div>
+</section>
+
+<!-- ============ BENEFÍCIOS ============ -->
+<section class="w">
+  <h2>O que muda na tua vida</h2>
+
+  <h3>Na prática</h3>
+  <ul class="bullets">
+    <li>Você chega e fala, sem ensaiar frase antes</li>
+    <li>O silêncio na conversa para de ser emergência</li>
+    <li>Você para de depender do álcool e da galera certa pra ficar solto</li>
+    <li>Você leva um não e continua a noite no mesmo estado</li>
+    <li>Você fala mais devagar e as pessoas param de te interromper</li>
+    <li>Você consegue sair sozinho e não achar aquilo estranho</li>
+  </ul>
+
+  <h3>Por dentro — e essa é a parte que ninguém te vende</h3>
+  <ul class="bullets">
+    <li>Acaba o arrependimento no carro voltando pra casa</li>
+    <li>Some a sensação de ser bom e ninguém perceber</li>
+    <li>Você para de se comparar com o cara do Instagram</li>
+    <li>Você para de precisar da aprovação de gente que você nem respeita</li>
+    <li>E o principal: <strong>você para de esconder o cara que você já é</strong></li>
+  </ul>
+
+  <p class="impacto">Isso não é sobre virar outra pessoa. É sobre parar de gastar energia escondendo a que você é.</p>
+</section>
+
+<hr class="w" style="max-width:660px">
+
+<!-- ============ PRA QUEM É ============ -->
+<section class="w">
+  <h2>Pra quem é</h2>
+  <p>Esse conteúdo foi desenvolvido pra <strong>homem perder a timidez</strong>. Ponto final. Foi essa a dor que eu tinha, e foi essa que eu resolvi primeiro, na marra, na rua, passando vergonha na frente de gente que eu nunca mais ia ver.</p>
+
+  <ul class="bullets ok">
+    <li>Você trava na hora, inventa desculpa e se arrepende depois</li>
+    <li>Você tem assunto na cabeça e não consegue tirar da boca</li>
+    <li>Você é o cara legal que nunca é escolhido</li>
+    <li>Você só fica solto com a galera certa ou depois de umas doses</li>
+    <li>Você já viu um monte de conteúdo de graça e não mudou nada</li>
+    <li>Você acha que nasceu assim</li>
+  </ul>
+
+  <p>E presta atenção na parte que quase ninguém percebe: quando você resolve a timidez, <strong>você não resolve só a timidez.</strong> É a mesma habilidade rodando em contextos diferentes. Então sim: isso é sobre conquista. E é sobre vendas. E é sobre liderar uma reunião, manter uma amizade viva, não ser atropelado no grupo, e conseguir dizer "não" sem passar três dias se sentindo culpado.</p>
+</section>
+
+<!-- ============ PRA QUEM NÃO É ============ -->
+<section class="w">
+  <h2>Pra quem não é</h2>
+  <p>Vou começar com a parte desagradável.</p>
+  <p>Esse livro pode ser a melhor coisa que você comprou esse ano. Ou pode ser dinheiro jogado na privada. <strong>A diferença entre as duas coisas não sou eu. Não é o conteúdo. É se você vai executar ou se vai só ler.</strong></p>
+  <p>Eu já comprei vários cursos na minha vida. Vários. E fiz metade deles pela metade — perdi o interesse, não executei, e depois culpei o dono do curso pela minha própria falta de atitude. É sério. Eu culpava o cara que gravou a aula pela minha incapacidade de levantar a bunda da cadeira.</p>
+  <p>Então eu conheço esse filme de dentro. E eu vou te dizer exatamente onde ele costuma travar: <strong>você vai ler os sete pilares num domingo à tarde, fechar o livro com aquela sensação boa de "caramba, entendi tudo", e na segunda-feira não vai ter mudado absolutamente nada.</strong></p>
+
+  <ul class="bullets nao">
+    <li><strong>Não é pra você se quer frase pronta.</strong> Não tem. Eu procurei por anos.</li>
+    <li><strong>Não é pra você se quer técnica de manipulação.</strong> Não tem, e se tivesse eu não venderia.</li>
+    <li><strong>Não é pra você se quer linguagem acadêmica.</strong> Tem palavrão. Tem gíria. É como eu falo.</li>
+    <li><strong>Não é pra você se quer resultado sem sair de casa.</strong> O Pilar 1 exige rua. Não tem versão de sofá.</li>
+    <li><strong>Não é pra você se acha que já sabe tudo.</strong> Se você fez o teste e deu Magnético e parou por aí, guarda os R$19,90.</li>
+  </ul>
+</section>
+
+<hr class="w" style="max-width:660px">
+
+<!-- ============ BÔNUS ============ -->
+<section class="w">
+  <span class="eyebrow">Vem junto</span>
+  <h2 style="margin-top:14px">Os bônus</h2>
+
+  <div class="box destaque">
+    <h3>🎁 O App DESTRAVA</h3>
+    <p>Ele <strong>não tem conteúdo novo.</strong> Os exercícios estão todos no livro, completos. O que ele faz é a parte chata:</p>
+    <ul class="bullets" style="margin:16px 0">
+      <li>Te lembra do exercício do dia</li>
+      <li>Guarda o teu caderno organizado por pilar</li>
+      <li>E cruza tudo que você anotou pra mostrar <strong>quais pensamentos se repetem em dias diferentes</strong></li>
+    </ul>
+    <p style="margin-bottom:0">Essa lista repetida <strong>é o Pilar 3 inteiro funcionando sozinho.</strong> É a diferença entre ler os 7 pilares e executar os 7 pilares. <em>Disponível no checkout por mais R$29,90 — se preferir fazer no caderno de papel, funciona do mesmo jeito. Eu fiz no papel durante anos.</em></p>
+  </div>
+
+  <div class="cards">
+    <div class="card"><b>🎁 O Protocolo dos 10</b><span>A folha de execução do Pilar 1. 30 dias de rastreio, um quadradinho por cumprimento. Parece bobo. É o que faz o resto acontecer.</span></div>
+    <div class="card"><b>🎁 Mapa das 10 Crenças</b><span>O template preenchível do Pilar 3, com exemplos reais de crenças que eu já ouvi de alunos — e que eu mesmo já tive.</span></div>
+    <div class="card"><b>🎁 Aula: O Poder do Silêncio</b><span>Direto do Módulo 7 do Masculinidade Autêntica. Criar interesse sem falar nada — a habilidade mais subestimada da lista.</span></div>
+  </div>
+</section>
+
+<!-- ============ OFERTA ============ -->
+<section class="w" id="oferta">
+  <span class="eyebrow">A oferta</span>
+  <h2 style="margin-top:14px">Deixa eu ser direto sobre o preço</h2>
+
+  <p>O <strong>Masculinidade Autêntica</strong> custa R$997 e tem 39 aulas. Ele continua valendo cada centavo e é pra onde você vai querer ir depois. Mas eu percebi um problema: <strong>o cara que mais precisa da base é justamente o que não tem R$997 pra gastar hoje</strong> — e aí ele fica mais um ano vendo conteúdo de graça e não mudando nada.</p>
+  <p>Então eu tirei a base do curso e coloquei em texto.</p>
+
+  <div class="stack">
+    <div><span class="l">📕 DESTRAVA — método completo em 7 pilares</span><span class="v">R$ 97</span></div>
+    <div><span class="l">🎁 Protocolo dos 10</span><span class="v">R$ 27</span></div>
+    <div><span class="l">🎁 Mapa das 10 Crenças</span><span class="v">R$ 37</span></div>
+    <div><span class="l">🎁 Aula: O Poder do Silêncio</span><span class="v">R$ 47</span></div>
+    <div class="tot"><span class="l">VALOR REAL</span><span class="v">R$ 208</span></div>
+  </div>
+
+  <div class="preco">
+    <div class="de">HOJE POR</div>
+    <div class="val">R$ 19,90</div>
+    <div class="obs">À vista. Uma vez.<br>Acesso imediato e vitalício.</div>
+  </div>
+
+  <p style="text-align:center;color:var(--mut);margin-top:22px">Menos que um lanche. Menos que duas cervejas no rolê onde você não falou com ninguém.</p>
+
+  <div class="cta-bloco">
+    <a class="cta" href="#" id="checkout" data-cta="oferta">QUERO DESTRAVAR AGORA<small>R$ 19,90 · acesso em 2 minutos</small></a>
+    <p class="cta-sub">Compra 100% segura · Acesso liberado imediatamente</p>
+  </div>
+
+  <div class="garantia">
+    <div class="selo">7</div>
+    <div>
+      <h3>7 dias. Risco zero.</h3>
+      <p>Lê os sete pilares. Faz o exercício do Pilar 1 — dez cumprimentos por dia, é ridículo de tão fácil. Se em 7 dias você olhar pra trás e não tiver mudado nada, me manda uma mensagem e eu devolvo os R$19,90. Sem formulário, sem pergunta, sem "mas você tentou mesmo?".</p>
+    </div>
+  </div>
+
+  <p>Não vou fingir que isso é um gesto de coragem da minha parte. É R$19,90 — o risco aqui nunca foi o teu dinheiro.</p>
+  <p><strong>O risco é mais um ano.</strong> Mais um ano voltando do rolê de mãos vazias, montando frase perfeita pra ninguém, e olhando pro cara com metade do teu conteúdo cercado de gente.</p>
+  <p>Essa parte a garantia não cobre.</p>
+</section>
+
+<hr class="w" style="max-width:660px">
+
+<!-- ============ AUTOR ============ -->
+<section class="w">
+  <h2>Quem é o Ruan</h2>
+  <div class="autor">
+    <p>Depois de anos sendo um cara apagado, inseguro, com medo de chegar nas mulheres e sem nenhum destaque nos meus ciclos sociais, eu resolvi estudar o assunto a fundo — e colocar em prática cada teoria que eu aprendia. Na rua, apanhando, passando vergonha.</p>
+    <p>Hoje eu sou referência em inteligência social e sedução, e já ajudei <strong>milhares de homens</strong> a se desenvolverem de um jeito autêntico, leve e eficaz.</p>
+    <p style="margin-bottom:0">Eu tenho 1,68m medido de tênis. Fui o cabeçudo, fui o baixinho, fui o narigudo. Nada do que eu ensino veio de talento — veio de horas de campo.</p>
+    <p class="lema">"Poucas ideias, muita prática."</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="w">
+  <h2>Perguntas</h2>
+
+  <details><summary>Isso é papo de macho alfa?</summary>
+    <p>Não. Eu não uso esse termo e não acredito nele. O DESTRAVA é sobre você parar de esconder o cara que já existe — não sobre virar um personagem que você nem respeita.</p></details>
+
+  <details><summary>É técnica de manipulação?</summary>
+    <p>Não, e essa é a parte que me importa. Nada aqui é sobre fazer alguém sentir o que não sente. É sobre você conseguir aparecer inteiro na frente das pessoas. Se o que você quer é manipular, esse material vai te frustrar — ele te obriga a ser mais verdadeiro, não menos.</p></details>
+
+  <details><summary>Eu sou MUITO tímido. Funciona pro meu caso?</summary>
+    <p>Foi escrito exatamente pra esse caso. O Pilar 1 começa com cumprimentar o porteiro. Não tem nível mais baixo de entrada do que isso — foi de propósito.</p></details>
+
+  <details><summary>Quanto tempo leva?</summary>
+    <p>Você lê em um fim de semana. Mas não é pra ler em um fim de semana. É uma página por dia — foi assim que eu criei o hábito de ler, e o método vale pro livro inteiro. O compromisso pequeno é o que não falha, e o que não falha vira hábito.</p></details>
+
+  <details><summary>É vídeo ou texto?</summary>
+    <p>Texto. É um ebook em PDF, acesso imediato, lê no celular ou no computador. A parte em vídeo é o Masculinidade Autêntica.</p></details>
+
+  <details><summary>Já tenho o Masculinidade Autêntica. Vale a pena?</summary>
+    <p>O conteúdo base é o mesmo, reescrito em texto — então se você já fez o MA e executou, você já tem isso. Compra só se prefere estudar lendo, ou se quer os checklists e o app pra executar com método.</p></details>
+
+  <details><summary>O app é obrigatório?</summary>
+    <p>Não. Os exercícios estão todos no livro, completos. Eu fiz tudo no papel durante anos. O app só faz a parte chata: lembrar, organizar e cruzar as tuas anotações.</p></details>
+
+  <details><summary>E se não funcionar comigo?</summary>
+    <p>7 dias de garantia, devolução integral. Mas sendo honesto: não funciona pra quem não executa. Se você ler os sete pilares e não fizer nenhum exercício, não vai funcionar mesmo — e nesse caso eu prefiro devolver o teu dinheiro.</p></details>
+
+  <details><summary>Por que tão barato?</summary>
+    <p>Porque o objetivo desse material é resolver a base. Se ele te servir, você vai querer a prática depois — e aí a gente conversa sobre o Masculinidade Autêntica. Eu prefiro que você entre pelo lugar certo.</p></details>
+
+  <details><summary>Serve pra mulher?</summary>
+    <p>O livro é escrito de homem pra homem, porque é a única forma que eu sei falar sem soar falso. Mas o mecanismo descrito aqui é humano, não masculino. Excesso de pensamento não tem sexo. Medo de julgamento não tem sexo. Necessidade de aprovação não tem sexo. Se você é mulher e tá lendo isso: adapta o cenário, o motor é o mesmo.</p></details>
+</section>
+
+<!-- ============ FECHO ============ -->
+<section class="w">
+  <h2>Última coisa</h2>
+  <p>Você chegou até o fim dessa página.</p>
+  <p>Isso já diz alguma coisa — porque o cara que tá satisfeito com a própria vida social não lê página de vendas sobre travar. Ele fecha na primeira linha.</p>
+  <p>Daqui a um ano você vai estar em algum lugar. Vai ter alguém que te interessa do outro lado. E vão existir aqueles quatro segundos — os mesmos quatro segundos de sempre — em que você decide se vai ou se inventa uma desculpa.</p>
+  <p><strong>A única coisa que muda essa cena é o que você faz agora.</strong></p>
+  <p>Eu mirei no resultado grandioso e esqueci do processo durante anos. Foi por isso que eu adiei academia, alimentação, leitura e esse curso que eu demorei uma eternidade pra gravar. Olhava pro topo, via o tanto de coisa que faltava, e desanimava antes de começar.</p>
+
+  <p class="impacto">Coloca o teu objetivo no micro. Um passo de cada vez. Quando você ver, já tá lá na frente.</p>
+
+  <p>A graça de tudo isso é a jornada. O objetivo final é um detalhe.</p>
+  <p>São R$19,90. E eu vou repetir o que eu falei lá em cima, porque é a verdade mais útil dessa página inteira:</p>
+
+  <h2 style="margin:30px 0 24px">Você não nasceu travado. Você só nunca entrou em campo o suficiente pra descobrir isso.</h2>
+
+  <div class="cta-bloco">
+    <a class="cta" href="#" id="checkout2" data-cta="fecho">QUERO ENTRAR EM CAMPO<small>R$ 19,90 · acesso imediato</small></a>
+    <p class="cta-sub">7 dias de garantia · Poucas ideias, muita prática</p>
+  </div>
+</section>
+
+<footer class="w">
+  DESTRAVA · Ruan Lisboa<br>
+  <span style="opacity:.7">Este produto não garante resultados. O resultado depende da execução.</span>
+</footer>
+
+<div class="fixa" id="fixa"><a href="#oferta">QUERO DESTRAVAR — R$ 19,90</a></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ==================================================================
+   CONFIGURAÇÃO — ajuste antes de publicar
+   ================================================================== */
+var CHECKOUT = "https://pay.kiwify.com.br/SEU-CODIGO";  // link do checkout
+var $ = function(s){ return document.querySelector(s); };
+
+var PILARES = {
+  1:"entrar em campo", 2:"achar o assunto", 3:"vencer o pensamento",
+  4:"absorver a rejeição", 5:"ter energia própria",
+  6:"largar o personagem", 7:"ter presença"
+};
+var PERFIS = {
+  invisivel:"O Invisível", bonzinho:"O Bonzinho Demais",
+  construcao:"O Homem em Construção", magnetico:"O Homem Magnético"
+};
+
+/* ---------- personalização vinda do quiz ---------- */
+var qs = new URLSearchParams(location.search);
+var perfil  = qs.get("perfil");
+var gargalo = parseInt(qs.get("gargalo"),10);
+var nome    = (qs.get("nome")||"").trim().split(" ")[0];
+
+var veioDoMA = qs.get("de") === "ma";
+
+if(veioDoMA){
+  /* recusou o curso de R$997 — o enquadramento muda: aqui é o primeiro degrau,
+     e o preço do curso já está ancorado na cabeça dele */
+  $("#doquizTxt").innerHTML = (nome ? nome+", você " : "Você ") +
+    "acabou de ver o curso completo. <b>Isso aqui é a base dele</b> — os mesmos 7 pilares, " +
+    "a mesma ordem, os mesmos exercícios. Por R$19,90 em vez de R$997." +
+    (gargalo>=1 && gargalo<=7 ? " O teu gargalo é o <b>Pilar "+gargalo+" — "+PILARES[gargalo]+"</b>." : "");
+  $("#doquiz").classList.add("on");
+  if(gargalo>=1 && gargalo<=7){
+    var liM = document.querySelector('#pilares li[data-p="'+gargalo+'"]');
+    if(liM) liM.classList.add("alvo");
+  }
+} else if(perfil && PERFIS[perfil] && gargalo >= 1 && gargalo <= 7){
+  var txt = (nome ? nome+", o " : "O ") + "teu resultado foi <b>" + PERFIS[perfil] + "</b>" +
+            " e o teu gargalo é o <b>Pilar " + gargalo + " — " + PILARES[gargalo] + "</b>." +
+            " Ele é o pilar " + gargalo + " da lista que vem aqui embaixo.";
+  $("#doquizTxt").innerHTML = txt;
+  $("#doquiz").classList.add("on");
+
+  var li = document.querySelector('#pilares li[data-p="'+gargalo+'"]');
+  if(li) li.classList.add("alvo");
+}
+
+/* ---------- checkout ---------- */
+var params = new URLSearchParams();
+["utm_source","utm_medium","utm_campaign","utm_content","utm_term"].forEach(function(k){
+  if(qs.get(k)) params.set(k,qs.get(k));
+});
+if(perfil)  params.set("perfil",perfil);
+if(gargalo) params.set("gargalo",String(gargalo));
+if(qs.get("email")) params.set("email",qs.get("email"));
+if(nome)    params.set("nome",nome);
+
+var url = CHECKOUT + (CHECKOUT.indexOf("?")>-1 ? "&" : "?") + params.toString();
+["#checkout","#checkout2"].forEach(function(s){
+  var el = $(s); if(el) el.href = url;
+});
+
+/* ---------- pixel ---------- */
+function evento(n,d){
+  try{ if(window.fbq) window.fbq("track",n,d||{}); }catch(e){}
+  try{ if(window.gtag) window.gtag("event",n,d||{}); }catch(e){}
+}
+evento("ViewContent",{content_name:"DESTRAVA",value:19.90,currency:"BRL"});
+
+document.addEventListener("click",function(e){
+  var a = e.target.closest("[data-cta]");
+  if(!a) return;
+  evento("InitiateCheckout",{content_name:"DESTRAVA",value:19.90,currency:"BRL",posicao:a.dataset.cta});
+});
+
+/* ---------- barra fixa no mobile ---------- */
+var fixa = $("#fixa"), alvo = $("#oferta");
+function checa(){
+  var passouTopo = window.scrollY > 700;
+  var r = alvo.getBoundingClientRect();
+  var naOferta = r.top < window.innerHeight && r.bottom > 0;
+  fixa.classList.toggle("on", passouTopo && !naOferta);
+}
+window.addEventListener("scroll",checa,{passive:true});
+checa();
+
+})();
+</script>
+</body>
+</html>

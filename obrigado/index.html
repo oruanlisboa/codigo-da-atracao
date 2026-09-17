@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Acesso liberado — DESTRAVA</title>
+<meta name="theme-color" content="#150F0E">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800;900&display=swap">
+<style>
+:root{--bg:#150F0E;--bg2:#1E1614;--surf:#241A18;--surf2:#2E211E;--line:#3A2A27;--line2:#4A3733;
+ --ink:#F0E7E1;--mut:#A89792;--dim:#7E6C67;--red:#E0402F;--red-md:#B32B22;--red-dp:#5E1210;--ok:#3FA97B}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,sans-serif;
+ font-size:17.5px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.glow{position:fixed;inset:0;pointer-events:none;z-index:0;
+ background:radial-gradient(92% 52% at 80% 0%,rgba(63,169,123,.18),rgba(0,0,0,0) 58%)}
+.w{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-weight:900;letter-spacing:-.035em;line-height:1.05;text-wrap:balance}
+p{margin:0 0 1.05em}
+strong{font-weight:800;color:#FFF9F6}
+em{font-style:italic;color:#DCCFC9}
+.eyebrow{font-size:11px;font-weight:900;letter-spacing:.26em;text-transform:uppercase;color:var(--ok)}
+hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+section{padding-block:36px}
+h2{font-size:clamp(25px,5vw,34px);margin-bottom:18px}
+h3{font-size:20px;margin:26px 0 9px}
+
+header{padding-block:56px 26px;text-align:center}
+.check{width:70px;height:70px;border-radius:50%;border:2.5px solid var(--ok);color:var(--ok);
+ font-size:34px;font-weight:900;display:flex;align-items:center;justify-content:center;
+ margin:0 auto 22px;animation:pop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.check{animation:none}}
+h1{font-size:clamp(32px,6.8vw,48px);margin-bottom:14px}
+.sub{font-size:clamp(17px,2.6vw,20px);color:var(--mut);font-weight:600;line-height:1.42}
+
+.cta{display:block;background:var(--red);color:#2A0C08;font-weight:900;text-align:center;
+ font-size:clamp(16.5px,3.7vw,20px);letter-spacing:-.015em;padding:22px 20px;border-radius:12px;
+ text-decoration:none;box-shadow:0 12px 34px -14px rgba(224,64,47,.9);line-height:1.2;transition:transform .12s}
+.cta:active{transform:scale(.99)}
+.cta small{display:block;font-size:13px;font-weight:700;opacity:.72;margin-top:5px;letter-spacing:0}
+.cta.verde{background:var(--ok);color:#06231A;box-shadow:0 12px 34px -14px rgba(63,169,123,.9)}
+.cta.vazado{background:none;border:1.5px solid var(--line2);color:var(--mut);box-shadow:none;font-size:16px}
+.cta-sub{text-align:center;font-size:13.5px;color:var(--dim);margin-top:12px;line-height:1.5}
+
+.passo{display:flex;gap:16px;align-items:flex-start;background:var(--surf);border:1px solid var(--line);
+ border-radius:12px;padding:20px;margin-bottom:12px}
+.passo .n{flex:0 0 auto;width:34px;height:34px;border-radius:9px;border:1.5px solid var(--red-md);
+ color:var(--red);font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center}
+.passo b{display:block;font-size:17px;color:#FFF9F6;margin-bottom:3px;letter-spacing:-.02em}
+.passo span{font-size:15.5px;color:var(--mut);line-height:1.48}
+
+.box{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:24px;margin:26px 0}
+.box.destaque{border-color:var(--red-md);background:rgba(94,18,16,.22)}
+.box.ok{border-color:rgba(63,169,123,.45);background:rgba(63,169,123,.09)}
+.box h3{margin-top:0}
+.box p:last-child{margin-bottom:0}
+.impacto{border-left:3px solid var(--red);padding:4px 0 4px 20px;margin:26px 0;
+ font-size:clamp(19px,4vw,24px);font-weight:800;letter-spacing:-.03em;line-height:1.3;color:#FFF9F6}
+
+ul.bullets{list-style:none;padding:0;margin:20px 0}
+ul.bullets li{position:relative;padding-left:28px;margin-bottom:12px;font-size:16.5px;line-height:1.5}
+ul.bullets li::before{content:"";position:absolute;left:2px;top:9px;width:9px;height:9px;
+ border-radius:50%;background:var(--red)}
+
+.preco-up{text-align:center;margin:22px 0}
+.preco-up .de{font-size:15.5px;color:var(--dim);font-weight:700;text-decoration:line-through}
+.preco-up .val{font-size:clamp(44px,11vw,64px);font-weight:900;letter-spacing:-.05em;
+ line-height:1;color:var(--red);margin:4px 0}
+.preco-up .obs{font-size:15px;color:var(--mut);font-weight:700}
+
+footer{padding-block:36px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<!-- ============ CONFIRMAÇÃO ============ -->
+<header class="w">
+  <div class="check">✓</div>
+  <span class="eyebrow">Compra confirmada</span>
+  <h1 id="titulo" style="margin-top:14px">Tá dentro.</h1>
+  <p class="sub">O DESTRAVA já é teu. O acesso foi liberado e o e-mail com o link tá chegando na tua caixa de entrada.</p>
+</header>
+
+<!-- ============ ACESSO ============ -->
+<section class="w">
+  <a class="cta" id="btAcesso" href="#" data-ev="acesso">BAIXAR O DESTRAVA AGORA<small>PDF · 65 páginas · acesso vitalício</small></a>
+  <p class="cta-sub">Não chegou o e-mail em 10 minutos? Olha no spam. Se não estiver lá, me chama no direct.</p>
+</section>
+
+<!-- ============ PRÓXIMOS PASSOS ============ -->
+<section class="w">
+  <h2>Antes de você fechar essa página</h2>
+  <p>Três coisas rápidas. A terceira é a que decide se esse livro vai mudar alguma coisa ou virar mais um PDF parado no teu celular.</p>
+
+  <div class="passo">
+    <div class="n">1</div>
+    <div><b>Baixa o arquivo agora</b>
+      <span>Não deixa pra depois. Salva no celular, que é onde você vai ler.</span></div>
+  </div>
+
+  <div class="passo">
+    <div class="n">2</div>
+    <div><b>Entra no canal</b>
+      <span>É onde eu solto as sacadas do dia a dia e aviso quando abre coisa nova. Não é grupo, ninguém fica falando — só eu posto.</span></div>
+  </div>
+
+  <div class="passo">
+    <div class="n">3</div>
+    <div><b>Faz o exercício do Pilar 1 hoje</b>
+      <span>Hoje mesmo. Dez cumprimentos com desconhecido. Leva 4 minutos e é ridículo de tão fácil — e é exatamente por isso que funciona.</span></div>
+  </div>
+
+  <div style="margin:26px 0">
+    <a class="cta verde" id="btCanal" href="#" data-ev="canal">ENTRAR NO CANAL DO DESTRAVA<small>sem spam · saio quando quiser</small></a>
+  </div>
+
+  <div class="box destaque">
+    <h3>Sobre o passo 3, e eu vou ser chato aqui</h3>
+    <p>Eu já comprei vários cursos na minha vida e fiz metade deles pela metade. Sei exatamente como isso trava: você vai ler os sete pilares num domingo à tarde, fechar com a sensação boa de <em>"caramba, entendi tudo"</em>, e na segunda não vai ter mudado nada.</p>
+    <p style="margin-bottom:0"><strong>Entender e executar são duas habilidades diferentes. Só uma muda a tua vida.</strong></p>
+  </div>
+
+  <p class="impacto">Uma página por dia. Foi assim que eu criei o hábito de ler, e vale pro livro inteiro.</p>
+</section>
+
+<hr class="w" style="max-width:660px">
+
+<!-- ============ UPSELL ============ -->
+<section class="w">
+  <span class="eyebrow" style="color:var(--red)">Só nessa página</span>
+  <h2 style="margin-top:14px">Você tem o método. Falta a parte que ninguém te conta.</h2>
+
+  <p>O DESTRAVA te dá os 7 pilares na ordem certa. Mas tem um ponto que eu sabia que ia aparecer no teu caminho, porque ele aparece no de todo mundo:</p>
+
+  <p><strong>O momento em que o método encontra a tua timidez de frente.</strong></p>
+
+  <p>É quando você entende tudo, sabe exatamente o que fazer, tá na frente da pessoa — e o corpo simplesmente não obedece. Mão suando, voz sumindo, cabeça em branco. O livro explica por que isso acontece. O <strong>Perdendo a Timidez</strong> é o treino específico pra atravessar isso.</p>
+
+  <div class="box">
+    <h3>O que tem dentro</h3>
+    <ul class="bullets">
+      <li>O protocolo pro corpo antes de entrar no ambiente</li>
+      <li>O que fazer nos 30 segundos em que a cabeça dá branco</li>
+      <li>Como treinar exposição em ordem crescente, sem pular degrau</li>
+      <li>A diferença entre nervosismo e medo — e por que só um deles atrapalha</li>
+    </ul>
+    <p style="margin-bottom:0"><em>Não é pré-requisito. O DESTRAVA funciona sozinho. Isso aqui é atalho pra quem a timidez é o gargalo principal.</em></p>
+  </div>
+
+  <div class="preco-up">
+    <div class="de">R$ 97</div>
+    <div class="val">R$ 47</div>
+    <div class="obs">Só nessa página, agora.<br>Se você sair, volta pro preço cheio.</div>
+  </div>
+
+  <a class="cta" id="btUpsell" href="#" data-ev="upsell">SIM, QUERO ADICIONAR POR R$ 47<small>vai junto no mesmo acesso</small></a>
+  <p class="cta-sub">7 dias de garantia, igual ao DESTRAVA</p>
+
+  <div style="margin-top:14px">
+    <a class="cta vazado" id="btRecusa" href="#" data-ev="recusa">Não, obrigado — quero só o DESTRAVA</a>
+  </div>
+</section>
+
+<footer class="w">
+  DESTRAVA · Ruan Lisboa<br>
+  <span style="opacity:.7">Dúvida com o acesso? Chama no direct <strong>@ruanenjoy_1</strong></span>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* ==================================================================
+   CONFIGURAÇÃO — ajuste antes de publicar
+   ================================================================== */
+var LINKS = {
+  acesso: "https://SEU-LINK-DE-ENTREGA",          // área de membros / download do PDF
+  canal:  "https://SEU-LINK-DO-CANAL",            // canal de transmissão do Instagram ou WhatsApp
+  upsell: "https://pay.kiwify.com.br/SEU-UPSELL", // checkout do Perdendo a Timidez a R$47
+  recusa: "/area"                                  // pra onde vai quem recusa (área de membros)
+};
+
+var $ = function(s){ return document.querySelector(s); };
+var qs = new URLSearchParams(location.search);
+
+/* ---------- personalização ---------- */
+var nome = (qs.get("nome")||"").trim().split(" ")[0];
+if(nome){ $("#titulo").textContent = "Tá dentro, " + nome + "."; }
+
+/* ---------- links ---------- */
+$("#btAcesso").href = LINKS.acesso;
+$("#btCanal").href  = LINKS.canal;
+$("#btRecusa").href = LINKS.recusa;
+
+var up = new URLSearchParams();
+if(qs.get("email")) up.set("email",qs.get("email"));
+if(nome) up.set("nome",nome);
+$("#btUpsell").href = LINKS.upsell + (LINKS.upsell.indexOf("?")>-1?"&":"?") + up.toString();
+
+/* ---------- pixel ---------- */
+function evento(n,d){
+  try{ if(window.fbq) window.fbq("track",n,d||{}); }catch(e){}
+  try{ if(window.gtag) window.gtag("event",n,d||{}); }catch(e){}
+}
+evento("Purchase",{content_name:"DESTRAVA",value:19.90,currency:"BRL"});
+
+document.addEventListener("click",function(e){
+  var a = e.target.closest("[data-ev]");
+  if(!a) return;
+  var t = a.dataset.ev;
+  if(t==="upsell") evento("InitiateCheckout",{content_name:"Perdendo a Timidez",value:47,currency:"BRL"});
+  else evento("ClickObrigado",{alvo:t});
+});
+
+})();
+</script>
+</body>
+</html>
