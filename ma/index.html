@@ -669,13 +669,13 @@ var PERF={invisivel:"O Invisível",bonzinho:"O Bonzinho Demais",
           construcao:"O Homem em Construção",magnetico:"O Homem Magnético"};
 
 var qs=new URLSearchParams(location.search);
-var perfil=qs.get("perfil"), gargalo=parseInt(qs.get("gargalo"),10);
+var perfil=qs.get("perfil"), trava=parseInt((qs.get("trava") || qs.get("gargalo")),10);
 var nome=(qs.get("nome")||"").trim().split(" ")[0];
 
 /* a faixa só aparece pra quem veio do teste — a página funciona inteira sem ela */
-if(perfil&&PERF[perfil]&&gargalo>=1&&gargalo<=7){
+if(perfil&&PERF[perfil]&&trava>=1&&trava<=7){
   $("#doquizTxt").innerHTML=(nome?nome+", o ":"O ")+"teu resultado foi <b>"+PERF[perfil]+
-    "</b> e o teu gargalo é <b>"+PIL[gargalo]+"</b> — o Módulo "+gargalo+" do curso.";
+    "</b> e a tua trava é <b>"+PIL[trava]+"</b> — o Módulo "+trava+" do curso.";
   $("#doquiz").classList.add("on");
   /* o destaque do módulo acontece no carrossel, mais abaixo */
 }
@@ -685,7 +685,7 @@ var p=new URLSearchParams();
   if(qs.get(k)) p.set(k,qs.get(k));
 });
 if(perfil) p.set("perfil",perfil);
-if(gargalo) p.set("gargalo",String(gargalo));
+if(trava) p.set("trava",String(trava));
 if(qs.get("email")) p.set("email",qs.get("email"));
 if(nome) p.set("nome",nome);
 
@@ -754,7 +754,7 @@ ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL
   });
   pinta();
 
-  var g = parseInt(new URLSearchParams(location.search).get("gargalo"), 10);
+  var g = parseInt((function(q){return q.get("trava")||q.get("gargalo");})(new URLSearchParams(location.search)), 10);
   if(g >= 1 && g <= 7){
     var alvo = trilho.querySelector('.mcard[data-p="'+g+'"]');
     if(alvo){

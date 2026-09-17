@@ -261,31 +261,31 @@ body{padding-bottom:0}
   </div>
 
   <ol class="pilares" id="pilares">
-    <li data-p="1"><span class="marca">teu gargalo</span><b>Entre em campo</b>
+    <li data-p="1"><span class="marca">tua trava</span><b>Entre em campo</b>
       <span class="frase">A primeira interação não pode ser importante. Ela precisa ser pequena, boba e diária.</span>
       <span class="d">Todo mundo que decide melhorar socialmente comete o mesmo erro de estreia: escolhe uma situação que importa. Aqui você entende por que o exercício é ridiculamente fácil de propósito — a função dele não é gerar conexão, é gerar <strong>frequência</strong>.</span></li>
 
-    <li data-p="2"><span class="marca">teu gargalo</span><b>Não existe frase pronta</b>
+    <li data-p="2"><span class="marca">tua trava</span><b>Não existe frase pronta</b>
       <span class="frase">Você não está sem assunto. Você está procurando no lugar errado.</span>
       <span class="d">Eu acreditei numa fórmula mágica por boa parte da minha vida. A frase certa, a abertura infalível. Não existe — e aqui eu te mostro onde o assunto realmente está e o que eu falo de verdade quando chego em alguém.</span></li>
 
-    <li data-p="3"><span class="marca">teu gargalo</span><b>Você não é o seu pensamento</b>
+    <li data-p="3"><span class="marca">tua trava</span><b>Você não é o seu pensamento</b>
       <span class="frase">O pensamento é uma sugestão que chega até você. Não é uma ordem, e não é uma verdade.</span>
       <span class="d">Quantas vezes você deixou de agir por causa de um pensamento que você tratou como fato? Aqui você desmonta as tuas próprias crenças — com a lista das 10, identificadas com prova concreta.</span></li>
 
-    <li data-p="4"><span class="marca">teu gargalo</span><b>Pare de procurar culpado</b>
+    <li data-p="4"><span class="marca">tua trava</span><b>Pare de procurar culpado</b>
       <span class="frase">Não é o tropeço que vira trauma. É a recusa em aceitar que ele aconteceu.</span>
       <span class="d">Toda vez que algo dá errado, tem uma bifurcação: aceitar, ou sair caçando responsável. Eu morei no segundo caminho — e aqui eu conto três histórias que eu preferia não contar.</span></li>
 
-    <li data-p="5"><span class="marca">teu gargalo</span><b>Estado de flow</b>
+    <li data-p="5"><span class="marca">tua trava</span><b>Estado de flow</b>
       <span class="frase">Filtro, não beleza. Você escolhe — ou é escolhido pelo que sobra?</span>
       <span class="d">A energia que não é emprestada: nem da galera, nem da dose, nem do dia bom. Inclui a parte que quase ninguém tem coragem de fazer e que é a que mais destrava: <strong>sair sozinho</strong>.</span></li>
 
-    <li data-p="6"><span class="marca">teu gargalo</span><b>Imperfeito</b>
+    <li data-p="6"><span class="marca">tua trava</span><b>Imperfeito</b>
       <span class="frase">Conexão precisa de brecha. Personagem perfeito não tem brecha nenhuma.</span>
       <span class="d">O que a máscara custa. Por que o cara inabalável que você construiu pra ser aceito é exatamente o que impede qualquer pessoa de chegar perto de você.</span></li>
 
-    <li data-p="7"><span class="marca">teu gargalo</span><b>Voz, olhar e silêncio</b>
+    <li data-p="7"><span class="marca">tua trava</span><b>Voz, olhar e silêncio</b>
       <span class="frase">Três ajustes bastam. E nenhum deles é técnica de locutor de rádio.</span>
       <span class="d">A camada final: tonalidade, ritmo, pausa e a coisa mais subestimada de todas — <strong>o poder do silêncio</strong>. Aqui também entra liderar, que é basicamente decidir.</span></li>
   </ol>
@@ -537,7 +537,7 @@ var PERFIS = {
 /* ---------- personalização vinda do quiz ---------- */
 var qs = new URLSearchParams(location.search);
 var perfil  = qs.get("perfil");
-var gargalo = parseInt(qs.get("gargalo"),10);
+var trava = parseInt((qs.get("trava") || qs.get("gargalo")),10);
 var nome    = (qs.get("nome")||"").trim().split(" ")[0];
 
 var veioDoMA = qs.get("de") === "ma";
@@ -548,20 +548,20 @@ if(veioDoMA){
   $("#doquizTxt").innerHTML = (nome ? nome+", você " : "Você ") +
     "acabou de ver o curso completo. <b>Isso aqui é a base dele</b> — os mesmos 7 pilares, " +
     "a mesma ordem, os mesmos exercícios. Por R$19,90 em vez de R$997." +
-    (gargalo>=1 && gargalo<=7 ? " O teu gargalo é o <b>Pilar "+gargalo+" — "+PILARES[gargalo]+"</b>." : "");
+    (trava>=1 && trava<=7 ? " A tua trava é o <b>Pilar "+trava+" — "+PILARES[trava]+"</b>." : "");
   $("#doquiz").classList.add("on");
-  if(gargalo>=1 && gargalo<=7){
-    var liM = document.querySelector('#pilares li[data-p="'+gargalo+'"]');
+  if(trava>=1 && trava<=7){
+    var liM = document.querySelector('#pilares li[data-p="'+trava+'"]');
     if(liM) liM.classList.add("alvo");
   }
-} else if(perfil && PERFIS[perfil] && gargalo >= 1 && gargalo <= 7){
+} else if(perfil && PERFIS[perfil] && trava >= 1 && trava <= 7){
   var txt = (nome ? nome+", o " : "O ") + "teu resultado foi <b>" + PERFIS[perfil] + "</b>" +
-            " e o teu gargalo é o <b>Pilar " + gargalo + " — " + PILARES[gargalo] + "</b>." +
-            " Ele é o pilar " + gargalo + " da lista que vem aqui embaixo.";
+            " e a tua trava é o <b>Pilar " + trava + " — " + PILARES[trava] + "</b>." +
+            " Ele é o pilar " + trava + " da lista que vem aqui embaixo.";
   $("#doquizTxt").innerHTML = txt;
   $("#doquiz").classList.add("on");
 
-  var li = document.querySelector('#pilares li[data-p="'+gargalo+'"]');
+  var li = document.querySelector('#pilares li[data-p="'+trava+'"]');
   if(li) li.classList.add("alvo");
 }
 
@@ -571,7 +571,7 @@ var params = new URLSearchParams();
   if(qs.get(k)) params.set(k,qs.get(k));
 });
 if(perfil)  params.set("perfil",perfil);
-if(gargalo) params.set("gargalo",String(gargalo));
+if(trava) params.set("trava",String(trava));
 if(qs.get("email")) params.set("email",qs.get("email"));
 if(nome)    params.set("nome",nome);
 

@@ -112,12 +112,12 @@ em{font-style:italic;color:#DCCFC9}
  color:var(--red);margin-bottom:11px}
 .bloco p{font-size:17.5px;line-height:1.58;color:var(--ink)}
 .bloco p:last-child{margin-bottom:0}
-.gargalo{background:rgba(94,18,16,.22);border:1px solid var(--red-md);border-radius:12px;
+.trava{background:rgba(94,18,16,.22);border:1px solid var(--red-md);border-radius:12px;
  padding:24px;margin:30px 0}
-.gargalo .tag{font-size:11.5px;font-weight:900;letter-spacing:.24em;text-transform:uppercase;
+.trava .tag{font-size:11.5px;font-weight:900;letter-spacing:.24em;text-transform:uppercase;
  color:var(--red);display:block;margin-bottom:9px}
-.gargalo h3{font-size:24px;margin:0 0 12px;letter-spacing:-.03em;color:#FFF9F6}
-.gargalo p{font-size:17px;color:var(--ink);margin:0;line-height:1.55}
+.trava h3{font-size:24px;margin:0 0 12px;letter-spacing:-.03em;color:#FFF9F6}
+.trava p{font-size:17px;color:var(--ink);margin:0;line-height:1.55}
 .impacto{border-left:3px solid var(--red);padding:4px 0 4px 20px;margin:30px 0;
  font-size:clamp(20px,4.2vw,25px);font-weight:800;letter-spacing:-.03em;line-height:1.3;color:#FFF9F6}
 hr{border:0;border-top:1px solid var(--line);margin:44px 0}
@@ -169,7 +169,7 @@ hr{border:0;border-top:1px solid var(--line);margin:44px 0}
 
     <p class="impacto">Você não nasceu travado. Você só nunca entrou em campo o suficiente pra descobrir que não é.</p>
 
-    <div class="gargalo" id="gargaloBox" hidden>
+    <div class="trava" id="travaBox" hidden>
       <span class="tag">E tem mais uma coisa</span>
       <h3 id="gTitulo"></h3>
       <p id="gTexto"></p>
@@ -232,19 +232,19 @@ var IDX = 0;
 var MAXPTS = 30;
 
 var PILARES = {
- 1:{t:"Pilar 1 — Entre em campo",x:"O teu gargalo é volume. Não é coragem que falta, é frequência. Você não trava por ser tímido — você trava porque cada interação é rara demais pra não ser importante.",n:"entrar em campo"},
- 2:{t:"Pilar 2 — Não existe frase pronta",x:"O teu gargalo é assunto. E a boa notícia é que você não está sem assunto — você está procurando ele no lugar errado: dentro da tua cabeça, antes de precisar.",n:"achar o assunto"},
- 3:{t:"Pilar 3 — Você não é o seu pensamento",x:"O teu gargalo é o pensamento. Você trata como fato uma coisa que é só sugestão. E obedece.",n:"vencer o pensamento"},
- 4:{t:"Pilar 4 — Pare de procurar culpado",x:"O teu gargalo é a rejeição. Não é o tropeço que vira trauma — é a recusa em aceitar que ele aconteceu.",n:"absorver a rejeição"},
- 5:{t:"Pilar 5 — Estado de flow",x:"O teu gargalo é energia emprestada. Tua vibe depende da galera, do álcool ou do dia. Enquanto for emprestada, vai faltar justo no dia que importa.",n:"ter energia própria"},
- 6:{t:"Pilar 6 — Imperfeito",x:"O teu gargalo é o personagem. Você construiu um cara inabalável pra ser aceito — e é exatamente esse cara que impede qualquer um de se conectar com você.",n:"largar o personagem"},
- 7:{t:"Pilar 7 — Voz, olhar e silêncio",x:"O teu gargalo é presença. Você tem o que dizer. O problema é o volume, a velocidade e a pressa de terminar antes que te interrompam.",n:"ter presença"}
+ 1:{t:"Pilar 1 — Entre em campo",x:"A tua trava é volume. Não é coragem que falta, é frequência. Você não trava por ser tímido — você trava porque cada interação é rara demais pra não ser importante.",n:"entrar em campo"},
+ 2:{t:"Pilar 2 — Não existe frase pronta",x:"A tua trava é assunto. E a boa notícia é que você não está sem assunto — você está procurando ele no lugar errado: dentro da tua cabeça, antes de precisar.",n:"achar o assunto"},
+ 3:{t:"Pilar 3 — Você não é o seu pensamento",x:"A tua trava é o pensamento. Você trata como fato uma coisa que é só sugestão. E obedece.",n:"vencer o pensamento"},
+ 4:{t:"Pilar 4 — Pare de procurar culpado",x:"A tua trava é a rejeição. Não é o tropeço que vira trauma — é a recusa em aceitar que ele aconteceu.",n:"absorver a rejeição"},
+ 5:{t:"Pilar 5 — Estado de flow",x:"A tua trava é energia emprestada. Tua vibe depende da galera, do álcool ou do dia. Enquanto for emprestada, vai faltar justo no dia que importa.",n:"ter energia própria"},
+ 6:{t:"Pilar 6 — Imperfeito",x:"A tua trava é o personagem. Você construiu um cara inabalável pra ser aceito — e é exatamente esse cara que impede qualquer um de se conectar com você.",n:"largar o personagem"},
+ 7:{t:"Pilar 7 — Voz, olhar e silêncio",x:"A tua trava é presença. Você tem o que dizer. O problema é o volume, a velocidade e a pressa de terminar antes que te interrompam.",n:"ter presença"}
 };
 
 var $=function(s){return document.querySelector(s);};
 var qs=new URLSearchParams(location.search);
 var pontos=parseInt(qs.get("pontos"),10);
-var gargalo=parseInt(qs.get("gargalo"),10);
+var trava=parseInt((qs.get("trava") || qs.get("gargalo")),10);
 var nome=(qs.get("nome")||"").trim().split(" ")[0];
 
 if(!isNaN(pontos)){
@@ -256,11 +256,11 @@ if(!isNaN(pontos)){
 var fx=document.querySelectorAll(".faixas span");
 for(var i=0;i<fx.length;i++) fx[i].classList.toggle("at", i===IDX);
 
-if(gargalo>=1&&gargalo<=7){
-  $("#gTitulo").textContent=PILARES[gargalo].t;
-  $("#gTexto").textContent=PILARES[gargalo].x;
-  $("#gargaloBox").hidden=false;
-  $("#gRef").textContent="e no teu caso é o Pilar "+gargalo+" — "+PILARES[gargalo].n;
+if(trava>=1&&trava<=7){
+  $("#gTitulo").textContent=PILARES[trava].t;
+  $("#gTexto").textContent=PILARES[trava].x;
+  $("#travaBox").hidden=false;
+  $("#gRef").textContent="e no teu caso é o Pilar "+trava+" — "+PILARES[trava].n;
 }
 
 /* rota pela temperatura do lead, igual ao quiz */
@@ -270,7 +270,7 @@ var destino=quente?DESTINO_QUENTE:DESTINO_FRIO;
 
 var p=new URLSearchParams();
 p.set("perfil",PERFIL);
-if(!isNaN(gargalo)) p.set("gargalo",String(gargalo));
+if(!isNaN(trava)) p.set("trava",String(trava));
 if(!isNaN(pontos)) p.set("pontos",String(pontos));
 ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","origem","email"].forEach(function(k){
   if(qs.get(k)) p.set(k,qs.get(k));
