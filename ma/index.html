@@ -145,6 +145,35 @@ details p{margin:13px 0 0;color:var(--mut);font-size:16.5px}
 .autor .lema{font-size:clamp(21px,4.4vw,27px);font-weight:900;letter-spacing:-.03em;
  color:var(--red);text-align:center;margin-top:18px}
 
+
+/* ---------- prova em vídeo ---------- */
+.provav{margin:26px 0}
+.provav .moldura{position:relative;background:#000;border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;max-width:100%}
+.provav .moldura.v916{aspect-ratio:9/16;max-width:340px;margin-inline:auto}
+.provav .moldura.v169{aspect-ratio:16/9}
+.provav video,.provav iframe{position:absolute;inset:0;width:100%;height:100%;
+  border:0;display:block;object-fit:cover}
+.provav .capa{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;cursor:pointer}
+.provav .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;background:rgba(21,15,14,.32);border:0;width:100%;height:100%;padding:0}
+.provav .play i{width:66px;height:66px;border-radius:50%;background:var(--red);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 10px 34px -10px rgba(0,0,0,.8)}
+.provav .play i::after{content:"";border-left:19px solid #2A0C08;border-top:12px solid transparent;
+  border-bottom:12px solid transparent;margin-left:5px}
+.provav .play:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.provav .selo-ao-vivo{position:absolute;top:12px;left:12px;z-index:2;
+  background:rgba(21,15,14,.82);backdrop-filter:blur(6px);border:1px solid var(--line2);
+  border-radius:99px;padding:5px 12px;font-size:10.5px;font-weight:900;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink);pointer-events:none}
+.provav .selo-ao-vivo b{color:var(--red)}
+.provav .legenda{font-size:14.5px;color:var(--dim);text-align:center;
+  margin-top:11px;line-height:1.5}
+.provav .vazio{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;position:absolute;inset:0;border:2px dashed var(--line2);border-radius:14px;
+  color:var(--dim);font-size:14px;text-align:center;padding:24px}
+.provav .vazio b{color:var(--mut);font-size:15px}
+
 footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5px;line-height:1.6}
 </style>
 </head>
@@ -311,6 +340,14 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
     <p>Quase todo mundo nesse mercado <strong>fala sobre</strong> abordagem. Quase ninguém <strong>mostra</strong>.</p>
     <p>No Módulo 8 você vê a coisa acontecendo na rua, sem corte e sem roteiro. E cada infield vem <strong>em dupla</strong>: primeiro a abordagem crua, depois ela de novo com meu comentário por cima, parando em cada momento pra explicar o que eu fiz e por quê.</p>
     <p style="margin-bottom:0">São abordagens reais, com gente real, incluindo as que não deram certo:</p>
+  </div>
+
+  <!-- prova em vídeo · some sozinho se não estiver configurado -->
+  <div class="provav" id="provaVideo" hidden>
+    <div class="moldura" id="molduraVideo">
+      <span class="selo-ao-vivo"><b>●</b> abordagem real</span>
+    </div>
+    <p class="legenda" id="legendaVideo"></p>
   </div>
 
   <div class="abord">
@@ -494,6 +531,29 @@ footer{padding-block:40px 60px;text-align:center;color:var(--dim);font-size:13.5
 var CHECKOUT = "https://pay.kiwify.com.br/SEU-CODIGO-MA";
 var DOWNSELL = "../oferta/";
 
+/* ------------------------------------------------------------------
+   PROVA EM VÍDEO (Módulo 8)
+   Deixe `src` vazio e o bloco inteiro não aparece — a página lê bem
+   sem ele. Para conferir o enquadramento antes de publicar, abra a
+   página com ?preview=video
+   ------------------------------------------------------------------
+   modo "loop"   : MP4 curto, sem som, em repetição. É o que converte
+                   melhor como prova — não exige clique nenhum.
+                   Corte de 15 a 25s, sem áudio, com a ação já
+                   acontecendo no primeiro quadro.
+   modo "clique" : capa + play, carrega o player só depois do clique.
+                   Use para clipe mais longo e com som.
+   proporcao     : "916" para vídeo de celular em pé, "169" deitado.
+------------------------------------------------------------------- */
+var VIDEO = {
+  modo: "loop",
+  src: "",                 // ex.: "/videos/infield-floripa.mp4"  ou embed do Vimeo/YouTube
+  capa: "",                // imagem de capa (obrigatória no modo "clique")
+  proporcao: "916",
+  legenda: "Trecho do Módulo 8 — mercado em Floripa, sem corte."
+};
+
+
 var $=function(s){return document.querySelector(s);};
 var PIL={1:"entrar em campo",2:"achar o assunto",3:"vencer o pensamento",4:"absorver a rejeição",
          5:"ter energia própria",6:"largar o personagem",7:"ter presença"};
@@ -534,6 +594,79 @@ function ev(n,o){
   try{ if(window.gtag) window.gtag("event",n,o||{}); }catch(e){}
 }
 ev("ViewContent",{content_name:"Masculinidade Autentica",value:997,currency:"BRL"});
+
+/* ---------- monta a prova em vídeo ---------- */
+(function(){
+  var bloco = $("#provaVideo");
+  if(!bloco) return;
+  var preview = new URLSearchParams(location.search).get("preview") === "video";
+  if(!VIDEO.src && !preview) return;          // sem vídeo, o bloco nem entra na página
+
+  var moldura = $("#molduraVideo");
+  moldura.className = "moldura v" + (VIDEO.proporcao === "169" ? "169" : "916");
+  $("#legendaVideo").textContent = VIDEO.legenda || "";
+  bloco.hidden = false;
+
+  if(!VIDEO.src){                              // só no preview
+    var vazio = document.createElement("div");
+    vazio.className = "vazio";
+    vazio.innerHTML = "<b>Espaço da prova em vídeo</b>" +
+      "<span>Preencha VIDEO.src no topo do script.<br>" +
+      "Corte de 15 a 25s, sem áudio, com a ação já no primeiro quadro.</span>";
+    moldura.appendChild(vazio);
+    return;
+  }
+
+  var semMovimento = window.matchMedia &&
+                     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if(VIDEO.modo === "loop" && !semMovimento){
+    var v = document.createElement("video");
+    v.src = VIDEO.src;
+    if(VIDEO.capa) v.poster = VIDEO.capa;
+    v.muted = true; v.defaultMuted = true;
+    v.autoplay = true; v.loop = true;
+    v.playsInline = true; v.setAttribute("playsinline","");
+    v.preload = "metadata";
+    v.setAttribute("aria-label", VIDEO.legenda || "Abordagem real");
+    moldura.appendChild(v);
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){ v.controls = true; });  // navegador barrou o autoplay
+    return;
+  }
+
+  /* modo clique — ou reduced-motion: capa + play, player só depois do clique */
+  if(VIDEO.capa){
+    var img = document.createElement("img");
+    img.className = "capa"; img.src = VIDEO.capa; img.alt = "";
+    img.loading = "lazy";
+    moldura.appendChild(img);
+  }
+  var bt = document.createElement("button");
+  bt.className = "play"; bt.type = "button";
+  bt.setAttribute("aria-label","Assistir a abordagem");
+  bt.innerHTML = "<i></i>";
+  bt.addEventListener("click", function(){
+    var ehArquivo = /\.(mp4|webm|mov)(\?|$)/i.test(VIDEO.src);
+    var el;
+    if(ehArquivo){
+      el = document.createElement("video");
+      el.src = VIDEO.src; el.controls = true; el.autoplay = true;
+      el.playsInline = true; el.setAttribute("playsinline","");
+    } else {
+      el = document.createElement("iframe");
+      el.src = VIDEO.src + (VIDEO.src.indexOf("?")>-1 ? "&" : "?") + "autoplay=1";
+      el.allow = "autoplay; fullscreen; picture-in-picture";
+      el.setAttribute("allowfullscreen","");
+      el.title = VIDEO.legenda || "Abordagem real";
+    }
+    moldura.innerHTML = "";
+    moldura.appendChild(el);
+    ev("VideoPlay",{content_name:"Infield Modulo 8"});
+  });
+  moldura.appendChild(bt);
+})();
+
 document.addEventListener("click",function(e){
   var a=e.target.closest("[data-cta]");
   if(!a) return;
